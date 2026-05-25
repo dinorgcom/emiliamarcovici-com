@@ -2,8 +2,10 @@ import Image from "next/image";
 import Reveal from "./Reveal";
 import { works } from "@/data/works";
 
-function sizeClasses(size: "tall" | "wide" | "square") {
+function sizeClasses(size: "tall" | "wide" | "square" | "featured") {
   switch (size) {
+    case "featured":
+      return "md:col-span-3 md:row-span-3 aspect-[16/9] md:aspect-auto";
     case "tall":
       return "md:row-span-2 aspect-[3/4]";
     case "wide":
@@ -76,14 +78,28 @@ export default function Gallery() {
                 №{String(idx + 1).padStart(2, "0")}
               </div>
 
-              <div className="absolute bottom-0 left-0 right-0 p-5 md:p-6 text-white translate-y-3 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500 z-20">
-                <p className="text-xs uppercase tracking-[0.25em] opacity-85 mb-1">
-                  {work.category} · {work.year}
-                </p>
-                <h3 className="font-serif text-2xl md:text-3xl italic">
-                  {work.title}
-                </h3>
-              </div>
+              {work.size === "featured" ? (
+                <div className="absolute bottom-0 left-0 right-0 p-6 md:p-10 text-white z-20 bg-gradient-to-t from-black/70 via-black/30 to-transparent">
+                  <p className="text-xs uppercase tracking-[0.3em] text-[#ffd60a] mb-2">
+                    Hauptwerk · {work.year}
+                  </p>
+                  <h3 className="font-serif text-4xl md:text-7xl italic">
+                    {work.title}
+                  </h3>
+                  <p className="text-sm md:text-base text-white/85 mt-2">
+                    {work.category}
+                  </p>
+                </div>
+              ) : (
+                <div className="absolute bottom-0 left-0 right-0 p-5 md:p-6 text-white translate-y-3 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500 z-20">
+                  <p className="text-xs uppercase tracking-[0.25em] opacity-85 mb-1">
+                    {work.category} · {work.year}
+                  </p>
+                  <h3 className="font-serif text-2xl md:text-3xl italic">
+                    {work.title}
+                  </h3>
+                </div>
+              )}
             </Reveal>
           ))}
         </div>

@@ -177,17 +177,17 @@ body {
 
 @keyframes hero-zoom {
   0% {
-    transform: scale(2.6) translate(10%, -6%) rotate(-3deg);
+    transform: scale(1.4) translate(4%, -3%) rotate(-2deg);
   }
-  50% {
-    transform: scale(1.5) translate(2%, -1%) rotate(-1deg);
+  60% {
+    transform: scale(1.08) translate(0%, 0%) rotate(-0.5deg);
   }
   100% {
-    transform: scale(1.18) translate(-2%, 1%) rotate(0deg);
+    transform: scale(1) translate(0%, 0%) rotate(0deg);
   }
 }
 .animate-hero-zoom {
-  animation: hero-zoom 18s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation: hero-zoom 14s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 @keyframes hero-breathe {
