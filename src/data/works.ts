@@ -1,6 +1,5 @@
 /**
- * Artwork catalogue. No duplicates inside a folder. Hauptwerk +
- * themed folders + standalone tiles for the looser-themed pieces.
+ * Artwork catalogue. No duplicates inside a folder.
  *
  * All images live under /artwork/works/ (user pastes, upscaled to
  * ~1200×1600 by scripts/upscale-works.mjs), except the Hauptwerk
@@ -39,9 +38,6 @@ export type Entry = Work | Series;
 
 export const entries: Entry[] = [
   // ── HAUPTWERK — Hikikomori ────────────────────────────────────────────
-  // Cover = the high-res IG canvas. The folder shows context shots only
-  // (close-up, on the easel, detail, on the street). No duplicate of
-  // the cover image inside.
   {
     kind: "series",
     id: "hikikomori",
@@ -59,13 +55,15 @@ export const entries: Entry[] = [
     ],
   },
 
-  // ── LOUVRE + COLLAGE ──────────────────────────────────────────────────
-  // Cover = Venus pink. No duplicate Venus inside.
+  // ── LOUVRE + COLLAGE — statues + studies of statues ──────────────────
+  // Now includes the two Louvre-study pieces (sketch held next to the
+  // original sculpture) which were previously in Drawings & Studies but
+  // really belong here.
   {
     kind: "series",
     id: "louvre",
     title: "Louvre + Collage",
-    category: "Photography + Collage",
+    category: "Photography + Collage · Studies",
     year: "2025",
     size: "wide",
     cover: "/artwork/works/work-025.jpg",
@@ -73,12 +71,15 @@ export const entries: Entry[] = [
     items: [
       { src: "/artwork/works/work-058.jpg", title: "Cupid, gold" },
       { src: "/artwork/works/work-057.jpg", title: "Venus, alt angle" },
+      { src: "/artwork/works/work-056.jpg", title: "Venus · close-up" },
+      { src: "/artwork/works/work-026.jpg", title: "Louvre study · curly head" },
+      { src: "/artwork/works/work-027.jpg", title: "Louvre study · bearded" },
     ],
   },
 
-  // ── DRAWINGS & STUDIES ────────────────────────────────────────────────
-  // Cover = bearded sculpture (work-033). Cover is intentionally omitted
-  // from the inside list to avoid duplication.
+  // ── DRAWINGS & STUDIES — figure drawing + portraits, NO statues ──────
+  // The two Louvre statue-with-sketch photos moved to the Louvre folder.
+  // NY · Jazz pulled in here per request (figure-heavy panel).
   {
     kind: "series",
     id: "drawings",
@@ -93,16 +94,15 @@ export const entries: Entry[] = [
       { src: "/artwork/works/work-034.jpg", title: "Profile, red" },
       { src: "/artwork/works/work-031.jpg", title: "Figure, falling" },
       { src: "/artwork/works/work-030.jpg", title: "Life-drawing pair" },
-      { src: "/artwork/works/work-026.jpg", title: "Louvre study · head" },
-      { src: "/artwork/works/work-027.jpg", title: "Louvre study · bearded" },
       { src: "/artwork/works/work-017.jpg", title: "Bonnet portrait" },
       { src: "/artwork/works/work-020.jpg", title: "Old man, watercolour" },
+      { src: "/artwork/works/work-014.jpg", title: "New York · Jazz" },
     ],
   },
 
-  // ── TRAVEL POSTCARDS — landscape/landmark panels only ────────────────
-  // The three panels with prominent face content (NY Lady-Liberty + pop
-  // woman; London Paddington; Russia portraits) were removed per request.
+  // ── TRAVEL POSTCARDS — landscape panels only (no faces, no heads) ────
+  // Brazil/Rio removed: the prominent macaw head + Christ statue head
+  // didn't fit the user's "postcards" idea.
   {
     kind: "series",
     id: "travel",
@@ -112,14 +112,12 @@ export const entries: Entry[] = [
     size: "wide",
     cover: "/artwork/works/work-015.jpg",
     items: [
-      { src: "/artwork/works/work-012.jpg", title: "Brazil · Rio" },
       { src: "/artwork/works/work-016.jpg", title: "Paris" },
       { src: "/artwork/works/work-007.jpg", title: "Japan · Fuji panels" },
     ],
   },
 
   // ── TYPOGRAPHY & PATTERN ──────────────────────────────────────────────
-  // Cover = FACE. Inside list excludes the cover.
   {
     kind: "series",
     id: "typography",
@@ -137,7 +135,6 @@ export const entries: Entry[] = [
   },
 
   // ── STILL LIFE — no walnuts (those have their own folder) ────────────
-  // Cover = apple/grapes/pear. Inside list excludes the cover.
   {
     kind: "series",
     id: "still-life",
@@ -158,7 +155,6 @@ export const entries: Entry[] = [
   },
 
   // ── CATS ──────────────────────────────────────────────────────────────
-  // Cover = Chinese-text ramen cat. Inside list excludes the cover.
   {
     kind: "series",
     id: "cats",
@@ -170,8 +166,7 @@ export const entries: Entry[] = [
     items: [{ src: "/artwork/works/work-002.jpg", title: "Cat, from behind" }],
   },
 
-  // ── WALNUTS ───────────────────────────────────────────────────────────
-  // Cover = first walnut composition. Inside list excludes the cover.
+  // ── WALNUTS — no Venus statue (moved to Louvre folder) ───────────────
   {
     kind: "series",
     id: "walnuts",
@@ -183,12 +178,10 @@ export const entries: Entry[] = [
     items: [
       { src: "/artwork/works/work-047.jpg", title: "Walnut composition · 2" },
       { src: "/artwork/works/work-048.jpg", title: "Blue walnuts" },
-      { src: "/artwork/works/work-056.jpg", title: "Walnut · detail" },
     ],
   },
 
-  // ── STANDALONE WORKS — formerly "Paintings" and "Objects & Mixed Media"
-  // folders, now broken out into individual tiles per request.
+  // ── STANDALONE WORKS ──────────────────────────────────────────────────
   {
     kind: "work",
     src: "/artwork/works/work-044.jpg",
@@ -269,8 +262,6 @@ export const entries: Entry[] = [
     year: "2024",
     size: "square",
   },
-
-  // ── SKETCHBOOK (small mixed group) ───────────────────────────────────
   {
     kind: "work",
     src: "/artwork/works/work-021.jpg",
@@ -296,11 +287,11 @@ export const entries: Entry[] = [
     size: "square",
   },
 
-  // ── City panels — pulled out of Travel because they're face-forward ──
+  // ── City panels ──────────────────────────────────────────────────────
   {
     kind: "work",
-    src: "/artwork/works/work-014.jpg",
-    title: "New York · Jazz",
+    src: "/artwork/works/work-012.jpg",
+    title: "Brazil · Rio",
     category: "Watercolour",
     year: "2024",
     size: "tall",
@@ -324,5 +315,5 @@ export const entries: Entry[] = [
 ];
 
 export const totalPieces = entries.reduce((n, e) => {
-  return n + (e.kind === "series" ? e.items.length + 1 : 1); // +1 counts the cover
+  return n + (e.kind === "series" ? e.items.length + 1 : 1);
 }, 0);

@@ -27,7 +27,7 @@ export default function Hero() {
               // around headline height instead of being stuck at the floor.
               style={{
                 objectPosition: "75% 100%",
-                transform: "scaleX(-1) translateY(-22%)",
+                transform: "scaleX(-1) translateY(-8%)",
               }}
               className="object-cover hero-image"
             />
