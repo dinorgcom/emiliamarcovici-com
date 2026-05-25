@@ -168,21 +168,43 @@ body {
   animation: word-scroll 12s linear infinite;
 }
 
-/* Hero painting: cinematic zoom-out from a close-up detail, then a slow
-   Ken Burns drift that keeps the brush strokes alive on screen. */
+/* Hero painting: vibrant, full-bleed, animated — no cream wash.
+   The image itself is push-saturated and animated with two layered
+   motions: a slow zoom-out + a continuous breathing/rotation pulse. */
+.hero-image {
+  filter: saturate(1.55) contrast(1.12) brightness(1.05);
+}
+
 @keyframes hero-zoom {
   0% {
-    transform: scale(2.4) translate(8%, -4%);
+    transform: scale(2.6) translate(10%, -6%) rotate(-3deg);
   }
-  35% {
-    transform: scale(1.5) translate(2%, -1%);
+  50% {
+    transform: scale(1.5) translate(2%, -1%) rotate(-1deg);
   }
   100% {
-    transform: scale(1.15) translate(-2%, 1%);
+    transform: scale(1.18) translate(-2%, 1%) rotate(0deg);
   }
 }
 .animate-hero-zoom {
-  animation: hero-zoom 24s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation: hero-zoom 18s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes hero-breathe {
+  0%,
+  100% {
+    transform: scale(1) rotate(0deg);
+    filter: hue-rotate(0deg);
+  }
+  50% {
+    transform: scale(1.04) rotate(1deg);
+    filter: hue-rotate(8deg);
+  }
+}
+/* Layer on top of the zoom: a slow infinite breathe.
+   Applied to the same element via two animations -- they multiply. */
+.animate-hero-breathe {
+  animation: hero-breathe 12s ease-in-out infinite;
 }
 
 /* Pulse for the floating CTA */
