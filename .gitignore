@@ -24,6 +24,9 @@
 .DS_Store
 *.pem
 
+# Original 333×250 thumbnails kept locally for rollback only
+public/artwork/works/.thumbs/
+
 # debug
 npm-debug.log*
 yarn-debug.log*
