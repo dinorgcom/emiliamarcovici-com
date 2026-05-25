@@ -1,5 +1,5 @@
+import Image from "next/image";
 import Reveal from "./Reveal";
-import SpiralBackground from "./SpiralBackground";
 
 export default function Hero() {
   return (
@@ -7,36 +7,42 @@ export default function Hero() {
       id="top"
       className="relative pt-32 pb-20 md:pt-44 md:pb-32 overflow-hidden bg-[#f4ede0]"
     >
-      {/* Spiral painting backdrop — zoom-out reveal, then slow rotation */}
+      {/* Mikromori painting backdrop — slow zoom-out + drift */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute -right-[20%] top-1/2 -translate-y-1/2 w-[120vh] h-[120vh] animate-spiral-zoom">
-          <div className="w-full h-full animate-spiral-spin">
-            <SpiralBackground className="w-full h-full" />
-          </div>
+        <div className="absolute inset-0 animate-hero-zoom">
+          <Image
+            src="/artwork/mikromori.jpg"
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-center"
+          />
         </div>
-        {/* Cream wash to keep text legible */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#f4ede0] via-[#f4ede0]/75 to-[#f4ede0]/20" />
+        {/* Cream wash — keeps text legible, leaves colour bleeding through */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#f4ede0]/95 via-[#f4ede0]/70 to-[#f4ede0]/30" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#f4ede0]/40 via-transparent to-[#f4ede0]/60" />
       </div>
 
       <div className="max-w-[1400px] mx-auto px-6 md:px-10 relative">
         {/* Top meta row */}
-        <Reveal className="grid grid-cols-12 gap-4 text-xs uppercase tracking-[0.25em] text-black/70 mb-16 md:mb-24">
+        <Reveal className="grid grid-cols-12 gap-4 text-xs uppercase tracking-[0.25em] text-black/75 mb-16 md:mb-24">
           <div className="col-span-6 md:col-span-3">
-            <p className="mb-1 opacity-50">Artist</p>
+            <p className="mb-1 opacity-60">Artist</p>
             <p>Emilia Marcovici</p>
           </div>
           <div className="col-span-6 md:col-span-3">
-            <p className="mb-1 opacity-50">Based in</p>
+            <p className="mb-1 opacity-60">Based in</p>
             <p>
               Vienna · <span className="text-[#ff2e4c]">Austria</span>
             </p>
           </div>
           <div className="hidden md:block md:col-span-3">
-            <p className="mb-1 opacity-50">Practice</p>
+            <p className="mb-1 opacity-60">Practice</p>
             <p>Painting · Mixed Media</p>
           </div>
           <div className="hidden md:block md:col-span-3 text-right">
-            <p className="mb-1 opacity-50">Year</p>
+            <p className="mb-1 opacity-60">Year</p>
             <p>2026 — Ongoing</p>
           </div>
         </Reveal>
@@ -62,7 +68,7 @@ export default function Hero() {
           delay={2}
         >
           <div className="col-span-12 md:col-span-7 md:col-start-2">
-            <p className="text-lg md:text-2xl font-serif leading-snug text-black/85 bg-[#f4ede0]/60 backdrop-blur-sm px-2 -mx-2 py-1 rounded inline-block">
+            <p className="text-lg md:text-2xl font-serif leading-snug text-black/90 bg-[#f4ede0]/60 backdrop-blur-sm px-3 -mx-3 py-1 rounded inline-block">
               Paintings, portraits and mixed media — created at the
               intersection of pop, classical reference, and everyday
               observation.
@@ -83,7 +89,7 @@ export default function Hero() {
 
         {/* Ticker */}
         <Reveal className="mt-20 md:mt-32 relative" delay={3}>
-          <div className="flex items-center gap-6 text-xs uppercase tracking-[0.25em] text-black/50 border-t border-black/15 pt-6 overflow-hidden bg-[#f4ede0]/60 backdrop-blur-sm">
+          <div className="flex items-center gap-6 text-xs uppercase tracking-[0.25em] text-black/60 border-t border-black/20 pt-6 overflow-hidden bg-[#f4ede0]/70 backdrop-blur-sm">
             <span className="shrink-0">Index of work</span>
             <div className="flex-1 overflow-hidden">
               <div className="flex gap-12 whitespace-nowrap animate-ticker">
@@ -105,7 +111,7 @@ export default function Hero() {
                 ].map((item, i) => (
                   <span
                     key={i}
-                    className="text-black/60 flex items-center gap-12"
+                    className="flex items-center gap-12"
                   >
                     {item}
                     <span className="text-[#ff2e4c]">●</span>

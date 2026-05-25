@@ -168,26 +168,21 @@ body {
   animation: word-scroll 12s linear infinite;
 }
 
-/* Hero spiral: initial zoom-out reveal */
-@keyframes spiral-zoom {
+/* Hero painting: cinematic zoom-out from a close-up detail, then a slow
+   Ken Burns drift that keeps the brush strokes alive on screen. */
+@keyframes hero-zoom {
   0% {
-    transform: scale(1.7);
-    opacity: 0;
+    transform: scale(2.4) translate(8%, -4%);
   }
-  20% {
-    opacity: 1;
+  35% {
+    transform: scale(1.5) translate(2%, -1%);
   }
   100% {
-    transform: scale(1);
-    opacity: 1;
+    transform: scale(1.15) translate(-2%, 1%);
   }
 }
-.animate-spiral-zoom {
-  animation: spiral-zoom 3.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-/* Continuous slow rotation, applied to inner wrapper */
-.animate-spiral-spin {
-  animation: rotate-slow 120s linear infinite;
+.animate-hero-zoom {
+  animation: hero-zoom 24s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 /* Pulse for the floating CTA */
