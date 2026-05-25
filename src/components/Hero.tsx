@@ -14,16 +14,15 @@ export default function Hero() {
           {/* inner: continuous breathe + hue shift */}
           <div className="absolute inset-0 animate-hero-breathe">
             <Image
-              src="/artwork/works/work-052.jpg"
+              src="/artwork/hikikomori.jpg"
               alt="Hikikomori — Emilia Marcovici"
               fill
               priority
               quality={92}
               sizes="100vw"
-              // The canvas has its black square in the lower-left. The
-              // headline sits left, so we mirror the painting (scaleX(-1))
-              // to move the square to the lower-right where it doesn't
-              // sit under text. object-position 75% 70% keeps it visible.
+              // Black square is in the lower-left of the canvas. We mirror
+              // it (scaleX(-1)) so it sits on the lower-right, clear of
+              // the headline that sits on the left.
               style={{
                 objectPosition: "75% 70%",
                 transform: "scaleX(-1)",

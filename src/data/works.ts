@@ -1,8 +1,9 @@
 /**
- * Artwork catalogue — only user-pasted photos. All 58 images live under
- * /public/artwork/works/. The script scripts/extract-attachments.mjs
- * pulls them from the session jsonl (both direct user-prompt blocks
- * and "attachment"-type pastes).
+ * Artwork catalogue — everything organised into clickable folders.
+ *
+ * Hero/Hauptwerk uses /artwork/hikikomori.jpg (kept at 1440×1920).
+ * All other images live under /artwork/works/ and are sourced from
+ * scripts/extract-attachments.mjs (user pastes only).
  */
 
 export type Item = {
@@ -36,7 +37,7 @@ export type Series = {
 export type Entry = Work | Series;
 
 export const entries: Entry[] = [
-  // ── HAUPTWERK — Hikikomori (spiral with the black square) ─────────────
+  // ── 01 · HAUPTWERK — Hikikomori ───────────────────────────────────────
   {
     kind: "series",
     id: "hikikomori",
@@ -44,22 +45,23 @@ export const entries: Entry[] = [
     category: "Acrylic on canvas · Hauptwerk",
     year: "2025",
     size: "featured",
-    cover: "/artwork/works/work-050.jpg",
+    cover: "/artwork/hikikomori.jpg",
     items: [
-      { src: "/artwork/works/work-050.jpg", title: "Hikikomori — close-up" },
+      { src: "/artwork/hikikomori.jpg", title: "Hikikomori — canvas" },
+      { src: "/artwork/works/work-050.jpg", title: "Close-up · brush strokes" },
       { src: "/artwork/works/work-052.jpg", title: "Full canvas, on easel" },
       { src: "/artwork/works/work-051.jpg", title: "Studio · angle" },
-      { src: "/artwork/works/work-053.jpg", title: "Detail · brush strokes" },
+      { src: "/artwork/works/work-053.jpg", title: "Detail" },
       { src: "/artwork/works/work-054.jpg", title: "On the street" },
     ],
   },
 
-  // ── LOUVRE + COLLAGE — three statues with collage interventions ──────
+  // ── 02 · LOUVRE + COLLAGE — statues with collage interventions ────────
   {
     kind: "series",
     id: "louvre",
     title: "Louvre + Collage",
-    category: "Photography + Collage · Series",
+    category: "Photography + Collage",
     year: "2025",
     size: "wide",
     cover: "/artwork/works/work-025.jpg",
@@ -67,16 +69,16 @@ export const entries: Entry[] = [
     items: [
       { src: "/artwork/works/work-025.jpg", title: "Venus, pink" },
       { src: "/artwork/works/work-058.jpg", title: "Cupid, gold" },
-      { src: "/artwork/works/work-057.jpg", title: "Venus, pink (variant)" },
+      { src: "/artwork/works/work-057.jpg", title: "Venus, pink · variant" },
     ],
   },
 
-  // ── DRAWINGS & STUDIES — pencil + charcoal sketches ──────────────────
+  // ── 03 · DRAWINGS & STUDIES — life drawing + Louvre studies ───────────
   {
     kind: "series",
     id: "drawings",
     title: "Drawings & Studies",
-    category: "Sketchbook · Folder",
+    category: "Pencil · Charcoal",
     year: "2024 — 2025",
     size: "tall",
     cover: "/artwork/works/work-033.jpg",
@@ -87,19 +89,19 @@ export const entries: Entry[] = [
       { src: "/artwork/works/work-034.jpg", title: "Profile, red" },
       { src: "/artwork/works/work-031.jpg", title: "Figure, falling" },
       { src: "/artwork/works/work-030.jpg", title: "Life-drawing pair" },
-      { src: "/artwork/works/work-026.jpg", title: "Louvre study, head" },
-      { src: "/artwork/works/work-027.jpg", title: "Louvre study, bearded" },
+      { src: "/artwork/works/work-026.jpg", title: "Louvre study · head" },
+      { src: "/artwork/works/work-027.jpg", title: "Louvre study · bearded" },
       { src: "/artwork/works/work-017.jpg", title: "Bonnet portrait" },
       { src: "/artwork/works/work-020.jpg", title: "Old man, watercolour" },
     ],
   },
 
-  // ── TRAVEL POSTCARDS — country panels in watercolour ─────────────────
+  // ── 04 · TRAVEL POSTCARDS — country panels ────────────────────────────
   {
     kind: "series",
     id: "travel",
     title: "Travel postcards",
-    category: "Watercolour · Series",
+    category: "Watercolour",
     year: "2024",
     size: "wide",
     cover: "/artwork/works/work-015.jpg",
@@ -114,14 +116,14 @@ export const entries: Entry[] = [
     ],
   },
 
-  // ── TYPOGRAPHY & PATTERN ──────────────────────────────────────────────
+  // ── 05 · TYPOGRAPHY & PATTERN ─────────────────────────────────────────
   {
     kind: "series",
     id: "typography",
     title: "Typography & Pattern",
-    category: "Mixed media · Series",
+    category: "Mixed media",
     year: "2024",
-    size: "wide",
+    size: "square",
     cover: "/artwork/works/work-010.jpg",
     items: [
       { src: "/artwork/works/work-010.jpg", title: "FACE" },
@@ -132,12 +134,48 @@ export const entries: Entry[] = [
     ],
   },
 
-  // ── WALNUTS — small object series ─────────────────────────────────────
+  // ── 06 · STILL LIFE — fruit + objects ─────────────────────────────────
+  {
+    kind: "series",
+    id: "still-life",
+    title: "Still Life",
+    category: "Oil pastel · Watercolour",
+    year: "2024 — 2025",
+    size: "tall",
+    cover: "/artwork/works/work-040.jpg",
+    items: [
+      { src: "/artwork/works/work-040.jpg", title: "Apple, grapes, pear" },
+      { src: "/artwork/works/work-046.jpg", title: "Pears" },
+      { src: "/artwork/works/work-003.jpg", title: "Blueberries" },
+      { src: "/artwork/works/work-004.jpg", title: "Half a lemon" },
+      { src: "/artwork/works/work-022.jpg", title: "Papaya" },
+      { src: "/artwork/works/work-042.jpg", title: "Dragon fruit" },
+      { src: "/artwork/works/work-049.jpg", title: "Citrus studies" },
+      { src: "/artwork/works/work-023.jpg", title: "Campari" },
+    ],
+  },
+
+  // ── 07 · CATS ─────────────────────────────────────────────────────────
+  {
+    kind: "series",
+    id: "cats",
+    title: "Cats",
+    category: "Acrylic · Pastel",
+    year: "2024 — 2025",
+    size: "square",
+    cover: "/artwork/works/work-001.jpg",
+    items: [
+      { src: "/artwork/works/work-001.jpg", title: "你能读一下这个吗?" },
+      { src: "/artwork/works/work-002.jpg", title: "Cat, from behind" },
+    ],
+  },
+
+  // ── 08 · WALNUTS — object studies ─────────────────────────────────────
   {
     kind: "series",
     id: "walnuts",
     title: "Walnuts",
-    category: "Object · Series",
+    category: "Object",
     year: "2025",
     size: "square",
     cover: "/artwork/works/work-045.jpg",
@@ -149,198 +187,57 @@ export const entries: Entry[] = [
     ],
   },
 
-  // ── INDIVIDUAL WORKS ──────────────────────────────────────────────────
+  // ── 09 · OBJECTS & MIXED MEDIA — sculptural / photographic works ──────
   {
-    kind: "work",
-    src: "/artwork/works/work-001.jpg",
-    title: "你能读一下这个吗?",
-    category: "Acrylic · Cat series",
-    year: "2025",
-    size: "tall",
-  },
-  {
-    kind: "work",
-    src: "/artwork/works/work-002.jpg",
-    title: "Cat, from behind",
-    category: "Oil pastel",
-    year: "2025",
+    kind: "series",
+    id: "objects",
+    title: "Objects & Mixed Media",
+    category: "Clay · Photography · Mixed",
+    year: "2024 — 2025",
     size: "square",
+    cover: "/artwork/works/work-038.jpg",
+    items: [
+      { src: "/artwork/works/work-038.jpg", title: "Reclining figure" },
+      { src: "/artwork/works/work-041.jpg", title: "Red yarn" },
+      { src: "/artwork/works/work-039.jpg", title: "Marbled pattern" },
+      { src: "/artwork/works/work-036.jpg", title: "Doll by the harbour" },
+      { src: "/artwork/works/work-028.jpg", title: "Lion door · Vienna" },
+    ],
   },
+
+  // ── 10 · PAINTINGS — small canvases & abstract ────────────────────────
   {
-    kind: "work",
-    src: "/artwork/works/work-003.jpg",
-    title: "Blueberries",
-    category: "Oil · Still life",
-    year: "2025",
-    size: "square",
-  },
-  {
-    kind: "work",
-    src: "/artwork/works/work-004.jpg",
-    title: "Half a lemon",
-    category: "Pastel · Still life",
-    year: "2024",
-    size: "square",
-  },
-  {
-    kind: "work",
-    src: "/artwork/works/work-005.jpg",
-    title: "Stamps",
-    category: "Mixed media",
-    year: "2024",
-    size: "tall",
-  },
-  {
-    kind: "work",
-    src: "/artwork/works/work-008.jpg",
-    title: "Volcano",
-    category: "Acrylic",
-    year: "2024",
-    size: "square",
-  },
-  {
-    kind: "work",
-    src: "/artwork/works/work-021.jpg",
-    title: "Girl in red",
-    category: "Coloured pencil",
-    year: "2024",
-    size: "tall",
-  },
-  {
-    kind: "work",
-    src: "/artwork/works/work-022.jpg",
-    title: "Papaya",
-    category: "Coloured pencil · Still life",
-    year: "2024",
-    size: "square",
-  },
-  {
-    kind: "work",
-    src: "/artwork/works/work-023.jpg",
-    title: "Campari",
-    category: "Acrylic · Still life",
-    year: "2024",
-    size: "tall",
-  },
-  {
-    kind: "work",
-    src: "/artwork/works/work-024.jpg",
-    title: "Tree of roots",
-    category: "Mixed media",
-    year: "2024",
-    size: "square",
-  },
-  {
-    kind: "work",
-    src: "/artwork/works/work-028.jpg",
-    title: "Lion door",
-    category: "Photography · Vienna",
-    year: "2024",
-    size: "square",
-  },
-  {
-    kind: "work",
-    src: "/artwork/works/work-029.jpg",
-    title: "Sea turtle",
-    category: "Coloured pencil",
-    year: "2024",
-    size: "square",
-  },
-  {
-    kind: "work",
-    src: "/artwork/works/work-036.jpg",
-    title: "Doll by the harbour",
-    category: "Photography",
-    year: "2024",
-    size: "tall",
-  },
-  {
-    kind: "work",
-    src: "/artwork/works/work-037.jpg",
-    title: "Lemon picking",
-    category: "Coloured pencil",
-    year: "2024",
-    size: "tall",
-  },
-  {
-    kind: "work",
-    src: "/artwork/works/work-038.jpg",
-    title: "Reclining figure",
-    category: "Clay · Mixed media",
-    year: "2025",
-    size: "square",
-  },
-  {
-    kind: "work",
-    src: "/artwork/works/work-039.jpg",
-    title: "Marbled pattern",
-    category: "Marbling",
-    year: "2025",
-    size: "square",
-  },
-  {
-    kind: "work",
-    src: "/artwork/works/work-040.jpg",
-    title: "Apple, grapes, pear",
-    category: "Oil pastel · Still life",
-    year: "2025",
-    size: "square",
-  },
-  {
-    kind: "work",
-    src: "/artwork/works/work-041.jpg",
-    title: "Red yarn",
-    category: "Object",
-    year: "2025",
-    size: "square",
-  },
-  {
-    kind: "work",
-    src: "/artwork/works/work-042.jpg",
-    title: "Dragon fruit",
-    category: "Watercolour",
-    year: "2025",
-    size: "square",
-  },
-  {
-    kind: "work",
-    src: "/artwork/works/work-043.jpg",
-    title: "Studio, in oil",
-    category: "Oil · Abstract",
-    year: "2025",
-    size: "tall",
-  },
-  {
-    kind: "work",
-    src: "/artwork/works/work-044.jpg",
-    title: "Fuji, pink",
-    category: "Acrylic · Japan",
-    year: "2025",
+    kind: "series",
+    id: "paintings",
+    title: "Paintings",
+    category: "Acrylic · Oil",
+    year: "2024 — 2025",
     size: "wide",
+    cover: "/artwork/works/work-044.jpg",
+    items: [
+      { src: "/artwork/works/work-044.jpg", title: "Fuji, pink" },
+      { src: "/artwork/works/work-008.jpg", title: "Volcano" },
+      { src: "/artwork/works/work-043.jpg", title: "Studio, in oil" },
+      { src: "/artwork/works/work-024.jpg", title: "Tree of roots" },
+      { src: "/artwork/works/work-055.jpg", title: "Sunset block · 3D" },
+    ],
   },
+
+  // ── 11 · SKETCHBOOK — coloured pencil + comic ─────────────────────────
   {
-    kind: "work",
-    src: "/artwork/works/work-046.jpg",
-    title: "Pears",
-    category: "Oil pastel · Still life",
-    year: "2025",
-    size: "square",
-  },
-  {
-    kind: "work",
-    src: "/artwork/works/work-049.jpg",
-    title: "Citrus studies",
-    category: "Watercolour · Still life",
+    kind: "series",
+    id: "sketchbook",
+    title: "Sketchbook",
+    category: "Coloured pencil",
     year: "2024",
-    size: "wide",
-  },
-  {
-    kind: "work",
-    src: "/artwork/works/work-055.jpg",
-    title: "Sunset block",
-    category: "Acrylic + 3D paint",
-    year: "2025",
-    size: "tall",
+    size: "square",
+    cover: "/artwork/works/work-021.jpg",
+    items: [
+      { src: "/artwork/works/work-021.jpg", title: "Girl in red" },
+      { src: "/artwork/works/work-037.jpg", title: "Lemon picking" },
+      { src: "/artwork/works/work-029.jpg", title: "Sea turtle" },
+      { src: "/artwork/works/work-005.jpg", title: "Stamps" },
+    ],
   },
 ];
 
