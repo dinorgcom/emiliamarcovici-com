@@ -1,9 +1,10 @@
 /**
- * Artwork catalogue — everything organised into clickable folders.
+ * Artwork catalogue. No duplicates inside a folder. Hauptwerk +
+ * themed folders + standalone tiles for the looser-themed pieces.
  *
- * Hero/Hauptwerk uses /artwork/hikikomori.jpg (kept at 1440×1920).
- * All other images live under /artwork/works/ and are sourced from
- * scripts/extract-attachments.mjs (user pastes only).
+ * All images live under /artwork/works/ (user pastes, upscaled to
+ * ~1200×1600 by scripts/upscale-works.mjs), except the Hauptwerk
+ * cover /artwork/hikikomori.jpg which is the 1440×1920 IG-CDN pull.
  */
 
 export type Item = {
@@ -37,7 +38,10 @@ export type Series = {
 export type Entry = Work | Series;
 
 export const entries: Entry[] = [
-  // ── 01 · HAUPTWERK — Hikikomori ───────────────────────────────────────
+  // ── HAUPTWERK — Hikikomori ────────────────────────────────────────────
+  // Cover = the high-res IG canvas. The folder shows context shots only
+  // (close-up, on the easel, detail, on the street). No duplicate of
+  // the cover image inside.
   {
     kind: "series",
     id: "hikikomori",
@@ -47,16 +51,16 @@ export const entries: Entry[] = [
     size: "featured",
     cover: "/artwork/hikikomori.jpg",
     items: [
-      { src: "/artwork/hikikomori.jpg", title: "Hikikomori — canvas" },
-      { src: "/artwork/works/work-050.jpg", title: "Close-up · brush strokes" },
       { src: "/artwork/works/work-052.jpg", title: "Full canvas, on easel" },
+      { src: "/artwork/works/work-050.jpg", title: "Close-up · brush strokes" },
       { src: "/artwork/works/work-051.jpg", title: "Studio · angle" },
       { src: "/artwork/works/work-053.jpg", title: "Detail" },
       { src: "/artwork/works/work-054.jpg", title: "On the street" },
     ],
   },
 
-  // ── 02 · LOUVRE + COLLAGE — statues with collage interventions ────────
+  // ── LOUVRE + COLLAGE ──────────────────────────────────────────────────
+  // Cover = Venus pink. No duplicate Venus inside.
   {
     kind: "series",
     id: "louvre",
@@ -67,13 +71,14 @@ export const entries: Entry[] = [
     cover: "/artwork/works/work-025.jpg",
     badge: "Available as print",
     items: [
-      { src: "/artwork/works/work-025.jpg", title: "Venus, pink" },
       { src: "/artwork/works/work-058.jpg", title: "Cupid, gold" },
-      { src: "/artwork/works/work-057.jpg", title: "Venus, pink · variant" },
+      { src: "/artwork/works/work-057.jpg", title: "Venus, alt angle" },
     ],
   },
 
-  // ── 03 · DRAWINGS & STUDIES — life drawing + Louvre studies ───────────
+  // ── DRAWINGS & STUDIES ────────────────────────────────────────────────
+  // Cover = bearded sculpture (work-033). Cover is intentionally omitted
+  // from the inside list to avoid duplication.
   {
     kind: "series",
     id: "drawings",
@@ -83,7 +88,6 @@ export const entries: Entry[] = [
     size: "tall",
     cover: "/artwork/works/work-033.jpg",
     items: [
-      { src: "/artwork/works/work-033.jpg", title: "Bearded sculpture" },
       { src: "/artwork/works/work-032.jpg", title: "Head with curls" },
       { src: "/artwork/works/work-035.jpg", title: "Apollo, three-quarter" },
       { src: "/artwork/works/work-034.jpg", title: "Profile, red" },
@@ -96,7 +100,8 @@ export const entries: Entry[] = [
     ],
   },
 
-  // ── 04 · TRAVEL POSTCARDS — country panels ────────────────────────────
+  // ── TRAVEL POSTCARDS ──────────────────────────────────────────────────
+  // Cover = Japan panels. Inside list excludes the cover.
   {
     kind: "series",
     id: "travel",
@@ -106,7 +111,6 @@ export const entries: Entry[] = [
     size: "wide",
     cover: "/artwork/works/work-015.jpg",
     items: [
-      { src: "/artwork/works/work-015.jpg", title: "Japan" },
       { src: "/artwork/works/work-012.jpg", title: "Brazil · Rio" },
       { src: "/artwork/works/work-014.jpg", title: "New York · Jazz" },
       { src: "/artwork/works/work-016.jpg", title: "Paris" },
@@ -116,7 +120,8 @@ export const entries: Entry[] = [
     ],
   },
 
-  // ── 05 · TYPOGRAPHY & PATTERN ─────────────────────────────────────────
+  // ── TYPOGRAPHY & PATTERN ──────────────────────────────────────────────
+  // Cover = FACE. Inside list excludes the cover.
   {
     kind: "series",
     id: "typography",
@@ -126,7 +131,6 @@ export const entries: Entry[] = [
     size: "square",
     cover: "/artwork/works/work-010.jpg",
     items: [
-      { src: "/artwork/works/work-010.jpg", title: "FACE" },
       { src: "/artwork/works/work-009.jpg", title: "AAAA?" },
       { src: "/artwork/works/work-011.jpg", title: "LOVE" },
       { src: "/artwork/works/work-006.jpg", title: "Pattern, blue" },
@@ -134,7 +138,8 @@ export const entries: Entry[] = [
     ],
   },
 
-  // ── 06 · STILL LIFE — fruit + objects ─────────────────────────────────
+  // ── STILL LIFE — no walnuts (those have their own folder) ────────────
+  // Cover = apple/grapes/pear. Inside list excludes the cover.
   {
     kind: "series",
     id: "still-life",
@@ -144,7 +149,6 @@ export const entries: Entry[] = [
     size: "tall",
     cover: "/artwork/works/work-040.jpg",
     items: [
-      { src: "/artwork/works/work-040.jpg", title: "Apple, grapes, pear" },
       { src: "/artwork/works/work-046.jpg", title: "Pears" },
       { src: "/artwork/works/work-003.jpg", title: "Blueberries" },
       { src: "/artwork/works/work-004.jpg", title: "Half a lemon" },
@@ -155,7 +159,8 @@ export const entries: Entry[] = [
     ],
   },
 
-  // ── 07 · CATS ─────────────────────────────────────────────────────────
+  // ── CATS ──────────────────────────────────────────────────────────────
+  // Cover = Chinese-text ramen cat. Inside list excludes the cover.
   {
     kind: "series",
     id: "cats",
@@ -164,83 +169,136 @@ export const entries: Entry[] = [
     year: "2024 — 2025",
     size: "square",
     cover: "/artwork/works/work-001.jpg",
-    items: [
-      { src: "/artwork/works/work-001.jpg", title: "你能读一下这个吗?" },
-      { src: "/artwork/works/work-002.jpg", title: "Cat, from behind" },
-    ],
+    items: [{ src: "/artwork/works/work-002.jpg", title: "Cat, from behind" }],
   },
 
-  // ── 08 · WALNUTS — object studies ─────────────────────────────────────
+  // ── WALNUTS ───────────────────────────────────────────────────────────
+  // Cover = first walnut composition. Inside list excludes the cover.
   {
     kind: "series",
     id: "walnuts",
     title: "Walnuts",
-    category: "Object",
+    category: "Object · Study",
     year: "2025",
     size: "square",
     cover: "/artwork/works/work-045.jpg",
     items: [
-      { src: "/artwork/works/work-045.jpg", title: "Walnut composition" },
       { src: "/artwork/works/work-047.jpg", title: "Walnut composition · 2" },
       { src: "/artwork/works/work-048.jpg", title: "Blue walnuts" },
       { src: "/artwork/works/work-056.jpg", title: "Walnut · detail" },
     ],
   },
 
-  // ── 09 · OBJECTS & MIXED MEDIA — sculptural / photographic works ──────
+  // ── STANDALONE WORKS — formerly "Paintings" and "Objects & Mixed Media"
+  // folders, now broken out into individual tiles per request.
   {
-    kind: "series",
-    id: "objects",
-    title: "Objects & Mixed Media",
-    category: "Clay · Photography · Mixed",
-    year: "2024 — 2025",
-    size: "square",
-    cover: "/artwork/works/work-038.jpg",
-    items: [
-      { src: "/artwork/works/work-038.jpg", title: "Reclining figure" },
-      { src: "/artwork/works/work-041.jpg", title: "Red yarn" },
-      { src: "/artwork/works/work-039.jpg", title: "Marbled pattern" },
-      { src: "/artwork/works/work-036.jpg", title: "Doll by the harbour" },
-      { src: "/artwork/works/work-028.jpg", title: "Lion door · Vienna" },
-    ],
-  },
-
-  // ── 10 · PAINTINGS — small canvases & abstract ────────────────────────
-  {
-    kind: "series",
-    id: "paintings",
-    title: "Paintings",
-    category: "Acrylic · Oil",
-    year: "2024 — 2025",
+    kind: "work",
+    src: "/artwork/works/work-044.jpg",
+    title: "Fuji, pink",
+    category: "Acrylic · Japan",
+    year: "2025",
     size: "wide",
-    cover: "/artwork/works/work-044.jpg",
-    items: [
-      { src: "/artwork/works/work-044.jpg", title: "Fuji, pink" },
-      { src: "/artwork/works/work-008.jpg", title: "Volcano" },
-      { src: "/artwork/works/work-043.jpg", title: "Studio, in oil" },
-      { src: "/artwork/works/work-024.jpg", title: "Tree of roots" },
-      { src: "/artwork/works/work-055.jpg", title: "Sunset block · 3D" },
-    ],
+  },
+  {
+    kind: "work",
+    src: "/artwork/works/work-008.jpg",
+    title: "Volcano",
+    category: "Acrylic",
+    year: "2024",
+    size: "square",
+  },
+  {
+    kind: "work",
+    src: "/artwork/works/work-043.jpg",
+    title: "Studio, in oil",
+    category: "Oil · Abstract",
+    year: "2025",
+    size: "tall",
+  },
+  {
+    kind: "work",
+    src: "/artwork/works/work-024.jpg",
+    title: "Tree of roots",
+    category: "Mixed media",
+    year: "2024",
+    size: "square",
+  },
+  {
+    kind: "work",
+    src: "/artwork/works/work-055.jpg",
+    title: "Sunset block",
+    category: "Acrylic + 3D paint",
+    year: "2025",
+    size: "tall",
+  },
+  {
+    kind: "work",
+    src: "/artwork/works/work-038.jpg",
+    title: "Reclining figure",
+    category: "Clay · Mixed media",
+    year: "2025",
+    size: "square",
+  },
+  {
+    kind: "work",
+    src: "/artwork/works/work-041.jpg",
+    title: "Red yarn",
+    category: "Object",
+    year: "2025",
+    size: "square",
+  },
+  {
+    kind: "work",
+    src: "/artwork/works/work-039.jpg",
+    title: "Marbled pattern",
+    category: "Marbling",
+    year: "2025",
+    size: "square",
+  },
+  {
+    kind: "work",
+    src: "/artwork/works/work-036.jpg",
+    title: "Doll by the harbour",
+    category: "Photography",
+    year: "2024",
+    size: "tall",
+  },
+  {
+    kind: "work",
+    src: "/artwork/works/work-028.jpg",
+    title: "Lion door",
+    category: "Photography · Vienna",
+    year: "2024",
+    size: "square",
   },
 
-  // ── 11 · SKETCHBOOK — coloured pencil + comic ─────────────────────────
+  // ── SKETCHBOOK (small mixed group) ───────────────────────────────────
   {
-    kind: "series",
-    id: "sketchbook",
-    title: "Sketchbook",
+    kind: "work",
+    src: "/artwork/works/work-021.jpg",
+    title: "Girl in red",
+    category: "Coloured pencil",
+    year: "2024",
+    size: "tall",
+  },
+  {
+    kind: "work",
+    src: "/artwork/works/work-037.jpg",
+    title: "Lemon picking",
+    category: "Coloured pencil",
+    year: "2024",
+    size: "tall",
+  },
+  {
+    kind: "work",
+    src: "/artwork/works/work-029.jpg",
+    title: "Sea turtle",
     category: "Coloured pencil",
     year: "2024",
     size: "square",
-    cover: "/artwork/works/work-021.jpg",
-    items: [
-      { src: "/artwork/works/work-021.jpg", title: "Girl in red" },
-      { src: "/artwork/works/work-037.jpg", title: "Lemon picking" },
-      { src: "/artwork/works/work-029.jpg", title: "Sea turtle" },
-      { src: "/artwork/works/work-005.jpg", title: "Stamps" },
-    ],
   },
 ];
 
 export const totalPieces = entries.reduce((n, e) => {
-  return n + (e.kind === "series" ? e.items.length : 1);
+  return n + (e.kind === "series" ? e.items.length + 1 : 1); // +1 counts the cover
 }, 0);
