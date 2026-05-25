@@ -41,7 +41,8 @@ export type Entry = Work | Series;
 
 export const entries: Entry[] = [
   // ── HAUPTWERK — Hikikomori ────────────────────────────────────────────
-  // Cover swapped to the full-canvas-on-easel shot per request.
+  // Cover is the 1440×1920 IG-CDN reference shot — non-pixelated, fills
+  // the banner cleanly. The user-pasted variants are inside the folder.
   {
     kind: "series",
     id: "hikikomori",
@@ -49,13 +50,13 @@ export const entries: Entry[] = [
     category: "Acrylic on canvas · Hauptwerk",
     year: "2025",
     size: "featured",
-    cover: "/artwork/works/work-052.jpg",
+    cover: "/artwork/hikikomori.jpg",
     items: [
+      { src: "/artwork/works/work-052.jpg", title: "Full canvas, on easel" },
       { src: "/artwork/works/work-050.jpg", title: "Close-up · brush strokes" },
       { src: "/artwork/works/work-051.jpg", title: "Studio · angle" },
       { src: "/artwork/works/work-053.jpg", title: "Detail" },
       { src: "/artwork/works/work-054.jpg", title: "On the street" },
-      { src: "/artwork/hikikomori.jpg", title: "Canvas · full frame" },
     ],
   },
 
