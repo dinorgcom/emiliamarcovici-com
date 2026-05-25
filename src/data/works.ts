@@ -295,6 +295,32 @@ export const entries: Entry[] = [
     year: "2024",
     size: "square",
   },
+
+  // ── City panels — pulled out of Travel because they're face-forward ──
+  {
+    kind: "work",
+    src: "/artwork/works/work-014.jpg",
+    title: "New York · Jazz",
+    category: "Watercolour",
+    year: "2024",
+    size: "tall",
+  },
+  {
+    kind: "work",
+    src: "/artwork/works/work-018.jpg",
+    title: "London",
+    category: "Watercolour",
+    year: "2024",
+    size: "tall",
+  },
+  {
+    kind: "work",
+    src: "/artwork/works/work-019.jpg",
+    title: "Russia",
+    category: "Watercolour",
+    year: "2024",
+    size: "tall",
+  },
 ];
 
 export const totalPieces = entries.reduce((n, e) => {
