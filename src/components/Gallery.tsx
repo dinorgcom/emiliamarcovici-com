@@ -6,22 +6,6 @@ import Reveal from "./Reveal";
 import SeriesLightbox from "./SeriesLightbox";
 import { entries, totalPieces, type Entry, type Series } from "@/data/works";
 
-function sizeClasses(size: "tall" | "wide" | "square" | "featured") {
-  // Sizing comes from grid row/col spans only — no aspect-ratio classes.
-  // That way tiles always fill their grid cell exactly and never overflow
-  // into neighbours, regardless of intrinsic image dimensions.
-  switch (size) {
-    case "featured":
-      return "col-span-2 md:col-span-4 row-span-2 md:row-span-3";
-    case "tall":
-      return "row-span-2";
-    case "wide":
-      return "col-span-2";
-    default:
-      return "";
-  }
-}
-
 const accents = [
   "#ff2e4c",
   "#ffd60a",
@@ -33,6 +17,13 @@ const accents = [
 
 export default function Gallery() {
   const [openSeries, setOpenSeries] = useState<Series | null>(null);
+
+  // Hauptwerk (the first featured entry) is pulled out and shown above the
+  // masonry grid so it gets full-bleed treatment without warping the grid.
+  const featured = entries.find(
+    (e) => e.size === "featured"
+  ) as Entry | undefined;
+  const rest = entries.filter((e) => e !== featured);
 
   return (
     <section
@@ -64,14 +55,33 @@ export default function Gallery() {
           </Reveal>
         </div>
 
-        {/* Tighter 4-column grid, smaller row height — better for low-res phone shots */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 auto-rows-[140px] md:auto-rows-[180px]">
-          {entries.map((entry, idx) => (
-            <EntryTile
+        {/* Hauptwerk: full-width banner above the masonry */}
+        {featured && (
+          <Reveal as="article" className="gallery-item group relative overflow-hidden rounded-sm mb-6 md:mb-8 cursor-pointer">
+            {featured.kind === "series" ? (
+              <button
+                type="button"
+                onClick={() => onOpenSafe(featured, setOpenSeries)}
+                className="block w-full text-left"
+                aria-label={`Open series ${featured.title}`}
+              >
+                <FeaturedInner entry={featured} accent="#ff2e4c" />
+              </button>
+            ) : (
+              <FeaturedInner entry={featured} accent="#ff2e4c" />
+            )}
+          </Reveal>
+        )}
+
+        {/* Masonry — natural aspect ratios via CSS columns */}
+        <div className="columns-2 md:columns-3 lg:columns-4 gap-4 md:gap-5 [column-fill:_balance]">
+          {rest.map((entry, idx) => (
+            <MasonryTile
               key={entry.kind === "series" ? entry.id : entry.src}
               entry={entry}
+              accent={accents[idx % accents.length]}
               index={idx}
-              onOpen={setOpenSeries}
+              onOpen={(s) => setOpenSeries(s)}
             />
           ))}
         </div>
@@ -99,120 +109,138 @@ export default function Gallery() {
   );
 }
 
-function EntryTile({
+function onOpenSafe(e: Entry, fn: (s: Series) => void) {
+  if (e.kind === "series") fn(e);
+}
+
+/* ─────────────────────────────────────────────────────────────────────── */
+
+function FeaturedInner({ entry, accent }: { entry: Entry; accent: string }) {
+  const cover = entry.kind === "series" ? entry.cover : entry.src;
+  return (
+    <div className="relative w-full">
+      {/* aspect 16/7 banner — but actual image keeps native aspect via object-cover crop */}
+      <div className="relative aspect-[16/7] w-full overflow-hidden">
+        <Image
+          src={cover}
+          alt={entry.title}
+          fill
+          priority
+          quality={92}
+          sizes="100vw"
+          className="object-cover object-center transition-transform duration-1000 ease-out group-hover:scale-[1.02]"
+        />
+        <div
+          className="absolute top-0 right-0 w-12 h-12 md:w-16 md:h-16"
+          style={{ background: accent }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/30 to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 p-6 md:p-10 text-white">
+          <p className="text-[10px] md:text-xs uppercase tracking-[0.3em] text-[#ffd60a] mb-2">
+            Hauptwerk · {entry.year}
+          </p>
+          <h3 className="font-serif text-4xl md:text-7xl italic leading-none">
+            {entry.title}
+          </h3>
+          <p className="text-xs md:text-sm text-white/85 mt-2">
+            {entry.category}
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function MasonryTile({
   entry,
+  accent,
   index,
   onOpen,
 }: {
   entry: Entry;
+  accent: string;
   index: number;
   onOpen: (s: Series) => void;
 }) {
-  const accent = accents[index % accents.length];
   const isSeries = entry.kind === "series";
-  const cover =
-    entry.kind === "series" ? entry.cover : entry.src;
-  const title = entry.title;
+  const cover = entry.kind === "series" ? entry.cover : entry.src;
   const subtitle =
     entry.kind === "series"
-      ? `${entry.items.length} pieces · ${entry.year}`
+      ? `${entry.items.length + 1} pieces · ${entry.year}`
       : `${entry.category} · ${entry.year}`;
-  const featured = entry.size === "featured";
   const badge = entry.badge;
 
-  const cls = `gallery-item group relative overflow-hidden cursor-pointer rounded-sm bg-black/10 ${sizeClasses(
-    entry.size
-  )}`;
-
   const inner = (
-    <>
+    <div className="relative">
+      {/* Image rendered at its natural aspect ratio — no cropping. */}
       <Image
         src={cover}
-        alt={title}
-        fill
+        alt={entry.title}
+        width={1200}
+        height={1600}
         quality={92}
-        sizes={
-          featured
-            ? "(max-width: 768px) 100vw, 80vw"
-            : "(max-width: 768px) 50vw, (max-width: 1280px) 33vw, 25vw"
-        }
-        className="object-cover transition-transform duration-1000 ease-out group-hover:scale-105"
+        sizes="(max-width: 768px) 50vw, (max-width: 1280px) 33vw, 25vw"
+        className="w-full h-auto block transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+        style={{ background: "#e8e2d4" }}
       />
 
-      {/* Series stack effect */}
+      {/* Series stack effect — gives a "stack of cards" hint */}
       {isSeries && (
         <>
-          <div className="absolute -top-1 -right-1 w-full h-full border border-white/30 rounded-sm pointer-events-none" />
-          <div className="absolute -top-2 -right-2 w-full h-full border border-white/20 rounded-sm pointer-events-none" />
+          <div className="absolute inset-0 -translate-y-1 translate-x-1 border border-black/15 rounded-sm pointer-events-none" />
+          <div className="absolute inset-0 -translate-y-2 translate-x-2 border border-black/10 rounded-sm pointer-events-none" />
         </>
       )}
 
-      {/* Accent square */}
       <div
-        className="absolute top-0 right-0 w-8 h-8 md:w-10 md:h-10 transition-all duration-500 group-hover:w-16 group-hover:h-16 z-10"
+        className="absolute top-0 right-0 w-8 h-8 md:w-10 md:h-10 transition-all duration-500 group-hover:w-14 group-hover:h-14 z-10"
         style={{ background: accent }}
       />
 
-      {/* Hover-darken */}
-      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/55 transition-colors duration-500 z-10" />
-
-      {/* Number stamp */}
       <div className="absolute top-2 left-2 md:top-3 md:left-3 text-[10px] md:text-xs uppercase tracking-[0.2em] text-white font-mono z-20 drop-shadow">
-        №{String(index + 1).padStart(2, "0")}
+        №{String(index + 2).padStart(2, "0")}
       </div>
 
-      {/* Series indicator */}
       {isSeries && (
-        <div className="absolute top-2 right-12 md:top-3 md:right-14 text-[10px] uppercase tracking-[0.2em] text-white z-20 bg-black/40 backdrop-blur px-2 py-0.5 rounded-full">
-          Folder · {(entry as Series).items.length}
+        <div className="absolute top-2 right-12 md:top-3 md:right-14 text-[10px] uppercase tracking-[0.2em] text-white z-20 bg-black/45 backdrop-blur px-2 py-0.5 rounded-full">
+          Folder · {(entry as Series).items.length + 1}
         </div>
       )}
 
-      {/* Print badge */}
       {badge && (
         <div className="absolute bottom-2 right-2 z-20 text-[10px] uppercase tracking-[0.15em] bg-[#ffd60a] text-black px-2 py-1 rounded-full font-medium">
           {badge}
         </div>
       )}
 
-      {/* Caption: always-on for featured, hover-reveal otherwise */}
-      {featured ? (
-        <div className="absolute bottom-0 left-0 right-0 p-5 md:p-8 text-white z-20 bg-gradient-to-t from-black/75 via-black/30 to-transparent">
-          <p className="text-[10px] md:text-xs uppercase tracking-[0.3em] text-[#ffd60a] mb-1">
-            Hauptwerk · {(entry as { year: string }).year}
-          </p>
-          <h3 className="font-serif text-3xl md:text-6xl italic leading-none">
-            {title}
-          </h3>
-          <p className="text-xs md:text-sm text-white/85 mt-1.5">
-            {(entry as { category: string }).category}
-          </p>
-        </div>
-      ) : (
-        <div className="absolute bottom-0 left-0 right-0 p-3 md:p-4 text-white translate-y-2 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500 z-20">
-          <p className="text-[10px] uppercase tracking-[0.2em] opacity-85 mb-0.5">
-            {subtitle}
-          </p>
-          <h3 className="font-serif text-base md:text-xl italic leading-tight">
-            {title}
-          </h3>
-        </div>
-      )}
-    </>
+      {/* Hover overlay with title */}
+      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/50 transition-colors duration-500 z-10" />
+      <div className="absolute bottom-0 left-0 right-0 p-3 md:p-4 text-white translate-y-2 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500 z-20">
+        <p className="text-[10px] uppercase tracking-[0.2em] opacity-85 mb-0.5">
+          {subtitle}
+        </p>
+        <h3 className="font-serif text-base md:text-xl italic leading-tight">
+          {entry.title}
+        </h3>
+      </div>
+    </div>
   );
+
+  const wrapperCls =
+    "gallery-item group relative overflow-hidden cursor-pointer rounded-sm mb-4 md:mb-5 break-inside-avoid block";
 
   if (isSeries) {
     return (
       <Reveal
         as="article"
         delay={((index % 4) + 1) as 1 | 2 | 3 | 4}
-        className={cls}
+        className={wrapperCls}
       >
         <button
           type="button"
           onClick={() => onOpen(entry as Series)}
-          className="absolute inset-0 w-full h-full text-left"
-          aria-label={`Open series ${title}`}
+          className="w-full text-left"
+          aria-label={`Open series ${entry.title}`}
         >
           {inner}
         </button>
@@ -224,7 +252,7 @@ function EntryTile({
     <Reveal
       as="article"
       delay={((index % 4) + 1) as 1 | 2 | 3 | 4}
-      className={cls}
+      className={wrapperCls}
     >
       {inner}
     </Reveal>

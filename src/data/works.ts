@@ -100,8 +100,9 @@ export const entries: Entry[] = [
     ],
   },
 
-  // ── TRAVEL POSTCARDS ──────────────────────────────────────────────────
-  // Cover = Japan panels. Inside list excludes the cover.
+  // ── TRAVEL POSTCARDS — landscape/landmark panels only ────────────────
+  // The three panels with prominent face content (NY Lady-Liberty + pop
+  // woman; London Paddington; Russia portraits) were removed per request.
   {
     kind: "series",
     id: "travel",
@@ -112,10 +113,7 @@ export const entries: Entry[] = [
     cover: "/artwork/works/work-015.jpg",
     items: [
       { src: "/artwork/works/work-012.jpg", title: "Brazil · Rio" },
-      { src: "/artwork/works/work-014.jpg", title: "New York · Jazz" },
       { src: "/artwork/works/work-016.jpg", title: "Paris" },
-      { src: "/artwork/works/work-018.jpg", title: "London" },
-      { src: "/artwork/works/work-019.jpg", title: "Russia" },
       { src: "/artwork/works/work-007.jpg", title: "Japan · Fuji panels" },
     ],
   },

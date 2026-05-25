@@ -22,10 +22,12 @@ export default function Hero() {
               sizes="100vw"
               // Black square is in the lower-left of the canvas. We mirror
               // it (scaleX(-1)) so it sits on the lower-right, clear of
-              // the headline that sits on the left.
+              // the headline. Then anchor the bottom of the image and
+              // pull it further up with translateY so the square reads
+              // around headline height instead of being stuck at the floor.
               style={{
-                objectPosition: "75% 70%",
-                transform: "scaleX(-1)",
+                objectPosition: "75% 100%",
+                transform: "scaleX(-1) translateY(-22%)",
               }}
               className="object-cover hero-image"
             />
