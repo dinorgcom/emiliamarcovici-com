@@ -31,7 +31,7 @@ export default function Nav() {
           <a href="#contact" className="nav-link">Kontakt</a>
         </nav>
         <a
-          href="#contact"
+          href="mailto:marcovici.clara.emilia@gmail.com?subject=Artwork enquiry"
           className="text-sm px-5 py-2.5 bg-[#0a0a0a] text-[#f4ede0] rounded-full hover:bg-[#ff2e4c] transition-colors"
         >
           Anfrage

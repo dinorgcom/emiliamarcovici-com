@@ -168,6 +168,28 @@ body {
   animation: word-scroll 12s linear infinite;
 }
 
+/* Hero spiral: initial zoom-out reveal */
+@keyframes spiral-zoom {
+  0% {
+    transform: scale(1.7);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+.animate-spiral-zoom {
+  animation: spiral-zoom 3.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+/* Continuous slow rotation, applied to inner wrapper */
+.animate-spiral-spin {
+  animation: rotate-slow 120s linear infinite;
+}
+
 /* Pulse for the floating CTA */
 @keyframes pulse-ring {
   0% {

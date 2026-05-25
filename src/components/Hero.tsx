@@ -1,27 +1,21 @@
 import Reveal from "./Reveal";
+import SpiralBackground from "./SpiralBackground";
 
 export default function Hero() {
   return (
     <section
       id="top"
-      className="relative pt-32 pb-20 md:pt-44 md:pb-32 overflow-hidden"
+      className="relative pt-32 pb-20 md:pt-44 md:pb-32 overflow-hidden bg-[#f4ede0]"
     >
-      {/* Drifting pop-color blobs */}
-      <div className="absolute -top-32 -left-32 w-[600px] h-[600px] rounded-full bg-[#ff2e4c] opacity-25 blur-3xl pointer-events-none animate-drift" />
-      <div className="absolute top-40 -right-20 w-[500px] h-[500px] rounded-full bg-[#0058ff] opacity-20 blur-3xl pointer-events-none animate-drift-rev" />
-      <div className="absolute bottom-0 left-1/3 w-[400px] h-[400px] rounded-full bg-[#ffd60a] opacity-30 blur-3xl pointer-events-none animate-drift" />
-
-      {/* Geometric Warhol-style markers (no scribbles) */}
-      <div className="absolute top-32 right-24 hidden md:block">
-        <div className="relative w-32 h-32">
-          <div className="absolute inset-0 rounded-full bg-[#ff2e4c] animate-rotate-slow" />
-          <div className="absolute inset-3 rounded-full bg-[#ffd60a]" />
-          <div className="absolute inset-7 rounded-full bg-[#0058ff]" />
-          <div className="absolute inset-12 rounded-full bg-[#f4ede0]" />
+      {/* Spiral painting backdrop — zoom-out reveal, then slow rotation */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <div className="absolute -right-[20%] top-1/2 -translate-y-1/2 w-[120vh] h-[120vh] animate-spiral-zoom">
+          <div className="w-full h-full animate-spiral-spin">
+            <SpiralBackground className="w-full h-full" />
+          </div>
         </div>
-      </div>
-      <div className="absolute bottom-20 left-10 hidden md:block">
-        <div className="w-20 h-20 bg-[#ff3ea5] animate-rotate-slow-rev" />
+        {/* Cream wash to keep text legible */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#f4ede0] via-[#f4ede0]/75 to-[#f4ede0]/20" />
       </div>
 
       <div className="max-w-[1400px] mx-auto px-6 md:px-10 relative">
@@ -68,7 +62,7 @@ export default function Hero() {
           delay={2}
         >
           <div className="col-span-12 md:col-span-7 md:col-start-2">
-            <p className="text-lg md:text-2xl font-serif leading-snug text-black/85">
+            <p className="text-lg md:text-2xl font-serif leading-snug text-black/85 bg-[#f4ede0]/60 backdrop-blur-sm px-2 -mx-2 py-1 rounded inline-block">
               Paintings, portraits and mixed media — created at the
               intersection of pop, classical reference, and everyday
               observation.
@@ -87,9 +81,9 @@ export default function Hero() {
           </div>
         </Reveal>
 
-        {/* Ticker — replaces childish marquee, but in same horizontal motion spirit */}
+        {/* Ticker */}
         <Reveal className="mt-20 md:mt-32 relative" delay={3}>
-          <div className="flex items-center gap-6 text-xs uppercase tracking-[0.25em] text-black/50 border-t border-black/15 pt-6 overflow-hidden">
+          <div className="flex items-center gap-6 text-xs uppercase tracking-[0.25em] text-black/50 border-t border-black/15 pt-6 overflow-hidden bg-[#f4ede0]/60 backdrop-blur-sm">
             <span className="shrink-0">Index of work</span>
             <div className="flex-1 overflow-hidden">
               <div className="flex gap-12 whitespace-nowrap animate-ticker">
@@ -109,7 +103,10 @@ export default function Hero() {
                   "Mixed Media · 2025",
                   "Typography · 2024",
                 ].map((item, i) => (
-                  <span key={i} className="text-black/60 flex items-center gap-12">
+                  <span
+                    key={i}
+                    className="text-black/60 flex items-center gap-12"
+                  >
                     {item}
                     <span className="text-[#ff2e4c]">●</span>
                   </span>

@@ -1,5 +1,7 @@
 import Reveal from "./Reveal";
 
+const EMAIL = "marcovici.clara.emilia@gmail.com";
+
 export default function Footer() {
   return (
     <footer className="relative bg-[#0a0a0a] text-[#f4ede0] py-16 overflow-hidden">
@@ -19,7 +21,13 @@ export default function Footer() {
               <span className="italic text-[#ffd60a]">Marcovici</span>
               <span className="text-[#ff2e4c]">.</span>
             </p>
-            <p className="mt-4 text-sm text-white/60">
+            <a
+              href={`mailto:${EMAIL}`}
+              className="mt-6 inline-block text-sm md:text-base text-white/80 hover:text-[#ffd60a] transition-colors break-all"
+            >
+              {EMAIL}
+            </a>
+            <p className="mt-4 text-sm text-white/50">
               © {new Date().getFullYear()} — Studio, Vienna.
             </p>
           </div>
