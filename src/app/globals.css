@@ -1,0 +1,185 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: var(--font-inter);
+  --font-serif: var(--font-playfair);
+
+  /* Warhol-inspired pop palette */
+  --color-pop-red: #ff2e4c;
+  --color-pop-pink: #ff3ea5;
+  --color-pop-yellow: #ffd60a;
+  --color-pop-blue: #0058ff;
+  --color-pop-green: #00c896;
+  --color-pop-violet: #7b2cbf;
+  --color-pop-orange: #ff6b1a;
+  --color-cream: #f4ede0;
+  --color-ink: #0a0a0a;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #f4ede0;
+  color: #0a0a0a;
+  font-family: var(--font-sans), system-ui, sans-serif;
+}
+
+::selection {
+  background: #ffd60a;
+  color: #0a0a0a;
+}
+
+/* Halftone dot pattern (Warhol silkscreen feel) */
+.halftone {
+  background-image: radial-gradient(circle, currentColor 1px, transparent 1.5px);
+  background-size: 10px 10px;
+}
+
+/* Reveal-on-scroll */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 {
+  transition-delay: 0.1s;
+}
+.reveal-delay-2 {
+  transition-delay: 0.2s;
+}
+.reveal-delay-3 {
+  transition-delay: 0.3s;
+}
+.reveal-delay-4 {
+  transition-delay: 0.4s;
+}
+
+/* Slow drift for background blobs */
+@keyframes drift-slow {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(40px, -30px) scale(1.05);
+  }
+  66% {
+    transform: translate(-30px, 40px) scale(0.95);
+  }
+}
+.animate-drift {
+  animation: drift-slow 22s ease-in-out infinite;
+}
+.animate-drift-rev {
+  animation: drift-slow 28s ease-in-out infinite reverse;
+}
+
+/* Pop-art color cycle */
+@keyframes color-cycle {
+  0%,
+  100% {
+    background-color: #ff2e4c;
+  }
+  25% {
+    background-color: #ffd60a;
+  }
+  50% {
+    background-color: #0058ff;
+  }
+  75% {
+    background-color: #ff3ea5;
+  }
+}
+.animate-color-cycle {
+  animation: color-cycle 8s linear infinite;
+}
+
+/* Ticker (more subtle, professional) */
+@keyframes ticker {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+.animate-ticker {
+  animation: ticker 40s linear infinite;
+}
+
+/* Slow rotation for decorative geometry */
+@keyframes rotate-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.animate-rotate-slow {
+  animation: rotate-slow 30s linear infinite;
+}
+.animate-rotate-slow-rev {
+  animation: rotate-slow 40s linear infinite reverse;
+}
+
+/* Hover-lift for cards */
+.gallery-item {
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.5s ease;
+}
+.gallery-item:hover {
+  transform: translateY(-10px) scale(1.01);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.18);
+}
+
+/* Nav underline */
+.nav-link {
+  position: relative;
+}
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #ff2e4c;
+  transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* Marquee/text scroll for pop section */
+@keyframes word-scroll {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
+}
+.animate-word-scroll {
+  animation: word-scroll 12s linear infinite;
+}
+
+/* Pulse for the floating CTA */
+@keyframes pulse-ring {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 46, 76, 0.5);
+  }
+  70% {
+    box-shadow: 0 0 0 20px rgba(255, 46, 76, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 46, 76, 0);
+  }
+}
+.animate-pulse-ring {
+  animation: pulse-ring 2.5s infinite;
+}
