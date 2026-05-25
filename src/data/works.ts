@@ -40,13 +40,13 @@ export type Series = {
 export type Entry = Work | Series;
 
 export const entries: Entry[] = [
-  // ── HAUPTWERK — Hikikomori ────────────────────────────────────────────
+  // ── HAUPTWERK — The Spiral ────────────────────────────────────────────
   // Cover is the 1440×1920 IG-CDN reference shot — non-pixelated, fills
   // the banner cleanly. The user-pasted variants are inside the folder.
   {
     kind: "series",
-    id: "hikikomori",
-    title: "Hikikomori",
+    id: "the-spiral",
+    title: "The Spiral",
     category: "Acrylic on canvas · Hauptwerk",
     year: "2025",
     size: "featured",
