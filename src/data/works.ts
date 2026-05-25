@@ -1,35 +1,84 @@
 /**
- * The artwork catalogue. Edit this file to add, rename, or reorder works.
+ * Artwork catalogue.
  *
- * - `src`: path under /public
- * - `featured: true` makes the tile span across the gallery as a hero piece
- * - `size`: regular grid footprint ("tall" | "wide" | "square")
+ * Two entry shapes:
+ *   - Work     → a single piece
+ *   - Series   → a clickable folder of multiple pieces (cover + items)
  *
- * To add new pieces:
- *   1. Drop a JPG into /public/artwork/works/  (or run scripts/extract-attachments.mjs)
- *   2. Add an entry below.
+ * To add pieces, drop JPGs into /public/artwork/works/ (see
+ * scripts/extract-attachments.mjs) and add an entry below.
  */
 
-export type Work = {
+export type Item = {
   src: string;
+  title?: string;
+  category?: string;
+  year?: string;
+};
+
+export type Work = Item & {
+  kind: "work";
+  size: "tall" | "wide" | "square" | "featured";
   title: string;
   category: string;
   year: string;
-  size: "tall" | "wide" | "square" | "featured";
+  badge?: string;
 };
 
-export const works: Work[] = [
+export type Series = {
+  kind: "series";
+  id: string;
+  title: string;
+  category: string;
+  year: string;
+  size: "tall" | "wide" | "square";
+  cover: string;
+  items: Item[];
+};
+
+export type Entry = Work | Series;
+
+export const entries: Entry[] = [
   // ── HAUPTWERK ──────────────────────────────────────────────────────────
   {
+    kind: "work",
     src: "/artwork/mikromori.jpg",
     title: "Mikromori",
-    category: "Acrylic on canvas · Hauptwerk",
+    category: "Acrylic on canvas",
     year: "2025",
     size: "featured",
   },
 
-  // ── PORTRAIT & STILL LIFE ─────────────────────────────────────────────
+  // ── LOUVRE + COLLAGE — neue Serie, available as print ─────────────────
   {
+    kind: "work",
+    src: "/artwork/works/work-025.jpg",
+    title: "Venus, pink",
+    category: "Louvre · Collage",
+    year: "2025",
+    size: "wide",
+    badge: "Available as print",
+  },
+  {
+    kind: "work",
+    src: "/artwork/works/work-026.jpg",
+    title: "Bather, mosaic",
+    category: "Louvre · Collage",
+    year: "2025",
+    size: "square",
+  },
+  {
+    kind: "work",
+    src: "/artwork/works/work-027.jpg",
+    title: "Cupid, gold",
+    category: "Louvre · Collage",
+    year: "2025",
+    size: "square",
+  },
+
+  // ── PAINTINGS & MIXED MEDIA ───────────────────────────────────────────
+  {
+    kind: "work",
     src: "/artwork/works/work-001.jpg",
     title: "你能读一下这个吗?",
     category: "Acrylic · Cat series",
@@ -37,6 +86,7 @@ export const works: Work[] = [
     size: "tall",
   },
   {
+    kind: "work",
     src: "/artwork/works/work-002.jpg",
     title: "Cat, from behind",
     category: "Oil pastel",
@@ -44,103 +94,77 @@ export const works: Work[] = [
     size: "square",
   },
   {
+    kind: "work",
     src: "/artwork/works/work-003.jpg",
     title: "Blueberries",
     category: "Oil · Still life",
     year: "2025",
     size: "square",
   },
-  {
-    src: "/artwork/works/work-004.jpg",
-    title: "Half a lemon",
-    category: "Pastel · Still life",
-    year: "2024",
-    size: "square",
-  },
 
-  // ── COMIC / SERIES ────────────────────────────────────────────────────
+  // ── TYPOGRAPHY & PATTERN — series (work-006, work-009, work-010) ──────
   {
-    src: "/artwork/works/work-005.jpg",
-    title: "Stamps · series",
-    category: "Mixed media",
+    kind: "series",
+    id: "typography",
+    title: "Typography & Pattern",
+    category: "Mixed media · Series",
     year: "2024",
     size: "wide",
+    cover: "/artwork/works/work-010.jpg",
+    items: [
+      { src: "/artwork/works/work-010.jpg", title: "FACE" },
+      { src: "/artwork/works/work-009.jpg", title: "AAAA?" },
+      { src: "/artwork/works/work-006.jpg", title: "Pattern, blue" },
+    ],
   },
+
+  // ── JAPAN SERIES ──────────────────────────────────────────────────────
   {
-    src: "/artwork/works/work-006.jpg",
-    title: "Pattern, blue",
-    category: "Print",
-    year: "2024",
-    size: "tall",
-  },
-  {
+    kind: "work",
     src: "/artwork/works/work-007.jpg",
     title: "Japan, in panels",
-    category: "Comic / Watercolour",
+    category: "Watercolour",
     year: "2024",
     size: "tall",
   },
   {
+    kind: "work",
+    src: "/artwork/works/work-024.jpg",
+    title: "Fuji, pink",
+    category: "Acrylic · Japan",
+    year: "2025",
+    size: "square",
+  },
+  {
+    kind: "work",
     src: "/artwork/works/work-008.jpg",
     title: "Volcano",
     category: "Acrylic",
     year: "2024",
     size: "square",
   },
-  {
-    src: "/artwork/works/work-009.jpg",
-    title: "AAAA?",
-    category: "Typography · Collage",
-    year: "2024",
-    size: "square",
-  },
-  {
-    src: "/artwork/works/work-010.jpg",
-    title: "FACE",
-    category: "Typography · Collage",
-    year: "2024",
-    size: "tall",
-  },
 
-  // ── LIFE DRAWING / SCULPTURE STUDIES ──────────────────────────────────
+  // ── PORTRAITS & DRAWINGS — clickable folder ───────────────────────────
   {
-    src: "/artwork/works/work-011.jpg",
-    title: "Figure, falling",
-    category: "Charcoal · Life drawing",
-    year: "2025",
-    size: "square",
-  },
-  {
-    src: "/artwork/works/work-012.jpg",
-    title: "Head with curls",
-    category: "Pencil · Louvre study",
-    year: "2025",
-    size: "square",
-  },
-  {
-    src: "/artwork/works/work-013.jpg",
-    title: "Bearded sculpture",
-    category: "Pencil · Louvre study",
-    year: "2025",
-    size: "square",
-  },
-  {
-    src: "/artwork/works/work-014.jpg",
-    title: "Profile, in red",
-    category: "Red pencil",
-    year: "2025",
-    size: "square",
-  },
-  {
-    src: "/artwork/works/work-015.jpg",
-    title: "Apollo, three-quarter",
-    category: "Red pencil",
-    year: "2025",
-    size: "square",
+    kind: "series",
+    id: "portraits",
+    title: "Drawings & Studies",
+    category: "Sketchbook · Folder",
+    year: "2024 — 2025",
+    size: "wide",
+    cover: "/artwork/works/work-015.jpg",
+    items: [
+      { src: "/artwork/works/work-011.jpg", title: "Figure, falling" },
+      { src: "/artwork/works/work-012.jpg", title: "Head with curls" },
+      { src: "/artwork/works/work-013.jpg", title: "Bearded sculpture" },
+      { src: "/artwork/works/work-014.jpg", title: "Profile, red" },
+      { src: "/artwork/works/work-015.jpg", title: "Apollo, three-quarter" },
+    ],
   },
 
   // ── OBJECTS / MIXED MEDIA ─────────────────────────────────────────────
   {
+    kind: "work",
     src: "/artwork/works/work-016.jpg",
     title: "Doll by the harbour",
     category: "Photography",
@@ -148,6 +172,7 @@ export const works: Work[] = [
     size: "tall",
   },
   {
+    kind: "work",
     src: "/artwork/works/work-017.jpg",
     title: "Lemon picking",
     category: "Coloured pencil",
@@ -155,6 +180,7 @@ export const works: Work[] = [
     size: "tall",
   },
   {
+    kind: "work",
     src: "/artwork/works/work-018.jpg",
     title: "Reclining figure",
     category: "Clay · Mixed media",
@@ -162,6 +188,7 @@ export const works: Work[] = [
     size: "square",
   },
   {
+    kind: "work",
     src: "/artwork/works/work-019.jpg",
     title: "Marbled pattern",
     category: "Marbling",
@@ -169,8 +196,9 @@ export const works: Work[] = [
     size: "square",
   },
 
-  // ── STILL LIFE 2025 ───────────────────────────────────────────────────
+  // ── STILL LIFE ────────────────────────────────────────────────────────
   {
+    kind: "work",
     src: "/artwork/works/work-020.jpg",
     title: "Apple, grapes, pear",
     category: "Oil pastel · Still life",
@@ -178,13 +206,15 @@ export const works: Work[] = [
     size: "square",
   },
   {
+    kind: "work",
     src: "/artwork/works/work-021.jpg",
     title: "Red yarn",
-    category: "Mixed media · Object",
+    category: "Object",
     year: "2025",
     size: "square",
   },
   {
+    kind: "work",
     src: "/artwork/works/work-022.jpg",
     title: "Pears",
     category: "Oil pastel · Still life",
@@ -192,17 +222,16 @@ export const works: Work[] = [
     size: "square",
   },
   {
+    kind: "work",
     src: "/artwork/works/work-023.jpg",
     title: "Studio, in oil",
     category: "Oil · Abstract",
     year: "2025",
     size: "tall",
   },
-  {
-    src: "/artwork/works/work-024.jpg",
-    title: "Fuji, pink",
-    category: "Acrylic · Japan series",
-    year: "2025",
-    size: "wide",
-  },
 ];
+
+// Helper for the gallery — flattens series cover into a tile too.
+export const totalPieces = entries.reduce((n, e) => {
+  return n + (e.kind === "series" ? e.items.length : 1);
+}, 0);
