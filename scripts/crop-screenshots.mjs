@@ -1,10 +1,10 @@
 /**
- * Some pieces were pasted as screenshots and need cropping so they
- * don't read as screenshots in the gallery:
- *  - work-022 (Papaya): Instagram username strip on top
- *  - work-023 (Campari): same IG strip
- *  - work-059 (Geometric abstract): full iOS Photos screenshot — crop
- *    away the status bar and the thumbnail scrubber at the bottom.
+ * Crop pieces that have unwanted borders / chrome:
+ *  - 022 (Papaya): IG username strip
+ *  - 023 (Campari): IG username strip
+ *  - 033 (Bearded sculpture drawing): white margins above & below
+ *  - 055 (Sunset block canvas): pavement and fence around the canvas
+ *  - 059 (geometric abstract): iOS Photos chrome (if still .png)
  */
 
 import fs from "node:fs/promises";
@@ -16,7 +16,8 @@ const WORKS = path.join(process.cwd(), "public", "artwork", "works");
 const targets = [
   { file: "work-022.jpg", crop: { top: 0.13 } },
   { file: "work-023.jpg", crop: { top: 0.13 } },
-  // iOS Photos screenshot — keep only the middle artwork band
+  { file: "work-033.jpg", crop: { top: 0.12, bottom: 0.12 } },
+  { file: "work-055.jpg", crop: { top: 0.12, bottom: 0.08, left: 0.08, right: 0.08 } },
   { file: "work-059.png", crop: { top: 0.16, bottom: 0.22 } },
 ];
 
@@ -26,7 +27,6 @@ for (const t of targets) {
   try {
     buf = await fs.readFile(p);
   } catch {
-    console.log(`! ${t.file}: not found, skipping`);
     continue;
   }
   const meta = await sharp(buf).metadata();
@@ -34,20 +34,16 @@ for (const t of targets) {
   const h = meta.height || 0;
   const top = Math.round(h * (t.crop.top || 0));
   const bottom = Math.round(h * (t.crop.bottom || 0));
+  const left = Math.round(w * (t.crop.left || 0));
+  const right = Math.round(w * (t.crop.right || 0));
   const newH = h - top - bottom;
+  const newW = w - left - right;
   const out = await sharp(buf)
-    .extract({ left: 0, top, width: w, height: newH })
+    .extract({ left, top, width: newW, height: newH })
     .jpeg({ quality: 92, mozjpeg: true })
     .toBuffer();
-  // If the source was .png, save the cropped result as .jpg and remove
-  // the .png so the catalogue can reference a single .jpg path.
-  if (t.file.endsWith(".png")) {
-    const jpgPath = p.replace(/\.png$/, ".jpg");
-    await fs.writeFile(jpgPath, out);
-    await fs.unlink(p);
-    console.log(`✓ ${t.file} → ${path.basename(jpgPath)}: ${w}×${h} → ${w}×${newH}`);
-  } else {
-    await fs.writeFile(p, out);
-    console.log(`✓ ${t.file}: ${w}×${h} → ${w}×${newH}`);
-  }
+  const jpgPath = t.file.endsWith(".png") ? p.replace(/\.png$/, ".jpg") : p;
+  await fs.writeFile(jpgPath, out);
+  if (t.file.endsWith(".png")) await fs.unlink(p).catch(() => {});
+  console.log(`✓ ${t.file}: ${w}×${h} → ${newW}×${newH}`);
 }

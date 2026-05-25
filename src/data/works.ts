@@ -1,9 +1,12 @@
 /**
- * Artwork catalogue. No duplicates inside a folder.
+ * Artwork catalogue.
  *
  * All images live under /artwork/works/ (user pastes, upscaled to
- * ~1200×1600 by scripts/upscale-works.mjs), except the Hauptwerk
- * cover /artwork/hikikomori.jpg which is the 1440×1920 IG-CDN pull.
+ * ~1200×1600 by scripts/upscale-works.mjs). Some pieces are cropped
+ * to remove screenshot chrome / paper margins.
+ *
+ * /artwork/hikikomori.jpg is the 1440×1920 IG-CDN reference shot,
+ * used inside the Hikikomori folder only.
  */
 
 export type Item = {
@@ -38,7 +41,6 @@ export type Entry = Work | Series;
 
 export const entries: Entry[] = [
   // ── HAUPTWERK — Hikikomori ────────────────────────────────────────────
-  // Cover = the close-up with the black square (user's chosen Hauptfoto).
   {
     kind: "series",
     id: "hikikomori",
@@ -56,30 +58,27 @@ export const entries: Entry[] = [
     ],
   },
 
-  // ── LOUVRE + COLLAGE — statues + studies of statues ──────────────────
-  // Now includes the two Louvre-study pieces (sketch held next to the
-  // original sculpture) which were previously in Drawings & Studies but
-  // really belong here.
+  // ── LOUVRE + COLLAGE — three statues, no duplicates ──────────────────
+  // After re-extracting attachments the file numbers shifted: Venus is
+  // now work-056, Bather is work-057. Each piece appears once.
   {
     kind: "series",
     id: "louvre",
     title: "Louvre + Collage",
-    category: "Photography + Collage · Studies",
+    category: "Photography + Collage",
     year: "2025",
     size: "wide",
-    cover: "/artwork/works/work-025.jpg",
+    cover: "/artwork/works/work-056.jpg",
     badge: "Available as print",
     items: [
+      { src: "/artwork/works/work-057.jpg", title: "Bather, turquoise" },
       { src: "/artwork/works/work-058.jpg", title: "Cupid, gold" },
-      { src: "/artwork/works/work-057.jpg", title: "Venus, alt angle" },
-      { src: "/artwork/works/work-056.jpg", title: "Venus · close-up" },
       { src: "/artwork/works/work-026.jpg", title: "Louvre study · curly head" },
       { src: "/artwork/works/work-027.jpg", title: "Louvre study · bearded" },
     ],
   },
 
-  // ── DRAWINGS & STUDIES — pencil + charcoal drawings ──────────────────
-  // Geometric abstract (work-059) added per latest request.
+  // ── DRAWINGS & STUDIES — bearded sculpture (cropped) as cover ────────
   {
     kind: "series",
     id: "drawings",
@@ -100,7 +99,7 @@ export const entries: Entry[] = [
     ],
   },
 
-  // ── TRAVEL POSTCARDS — all country panels back in one folder ─────────
+  // ── TRAVEL POSTCARDS — all country panels ────────────────────────────
   {
     kind: "series",
     id: "travel",
@@ -136,7 +135,7 @@ export const entries: Entry[] = [
     ],
   },
 
-  // ── STILL LIFE — no walnuts (those have their own folder) ────────────
+  // ── STILL LIFE ────────────────────────────────────────────────────────
   {
     kind: "series",
     id: "still-life",
@@ -146,11 +145,11 @@ export const entries: Entry[] = [
     size: "tall",
     cover: "/artwork/works/work-040.jpg",
     items: [
-      { src: "/artwork/works/work-046.jpg", title: "Pears" },
+      { src: "/artwork/works/work-042.jpg", title: "Pears + orange" },
       { src: "/artwork/works/work-003.jpg", title: "Blueberries" },
       { src: "/artwork/works/work-004.jpg", title: "Half a lemon" },
       { src: "/artwork/works/work-022.jpg", title: "Papaya" },
-      { src: "/artwork/works/work-042.jpg", title: "Dragon fruit" },
+      { src: "/artwork/works/work-025.jpg", title: "Dragon fruit" },
       { src: "/artwork/works/work-049.jpg", title: "Citrus studies" },
       { src: "/artwork/works/work-023.jpg", title: "Campari" },
     ],
@@ -168,7 +167,7 @@ export const entries: Entry[] = [
     items: [{ src: "/artwork/works/work-002.jpg", title: "Cat, from behind" }],
   },
 
-  // ── WALNUTS — no Venus statue (moved to Louvre folder) ───────────────
+  // ── WALNUTS — pure walnut studies, no statues ────────────────────────
   {
     kind: "series",
     id: "walnuts",
@@ -180,6 +179,21 @@ export const entries: Entry[] = [
     items: [
       { src: "/artwork/works/work-047.jpg", title: "Walnut composition · 2" },
       { src: "/artwork/works/work-048.jpg", title: "Blue walnuts" },
+      { src: "/artwork/works/work-046.jpg", title: "Walnut · detail" },
+    ],
+  },
+
+  // ── RECLINING FIGURE + RED YARN — new folder per request ─────────────
+  {
+    kind: "series",
+    id: "figure-yarn",
+    title: "Figure + Yarn",
+    category: "Clay · Object",
+    year: "2025",
+    size: "square",
+    cover: "/artwork/works/work-038.jpg",
+    items: [
+      { src: "/artwork/works/work-041.jpg", title: "Red yarn" },
     ],
   },
 
@@ -226,22 +240,6 @@ export const entries: Entry[] = [
   },
   {
     kind: "work",
-    src: "/artwork/works/work-038.jpg",
-    title: "Reclining figure",
-    category: "Clay · Mixed media",
-    year: "2025",
-    size: "square",
-  },
-  {
-    kind: "work",
-    src: "/artwork/works/work-041.jpg",
-    title: "Red yarn",
-    category: "Object",
-    year: "2025",
-    size: "square",
-  },
-  {
-    kind: "work",
     src: "/artwork/works/work-039.jpg",
     title: "Marbled pattern",
     category: "Marbling",
@@ -266,14 +264,6 @@ export const entries: Entry[] = [
   },
   {
     kind: "work",
-    src: "/artwork/works/work-021.jpg",
-    title: "Girl in red",
-    category: "Coloured pencil",
-    year: "2024",
-    size: "tall",
-  },
-  {
-    kind: "work",
     src: "/artwork/works/work-037.jpg",
     title: "Lemon picking",
     category: "Coloured pencil",
@@ -288,7 +278,6 @@ export const entries: Entry[] = [
     year: "2024",
     size: "square",
   },
-
 ];
 
 export const totalPieces = entries.reduce((n, e) => {
