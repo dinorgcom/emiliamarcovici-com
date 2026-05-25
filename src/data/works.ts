@@ -39,14 +39,27 @@ export type Series = {
 export type Entry = Work | Series;
 
 export const entries: Entry[] = [
-  // ── HAUPTWERK ──────────────────────────────────────────────────────────
+  // ── HAUPTWERK — Mikromori series ──────────────────────────────────────
+  // Click the cover (the one with the black square) to open all variants.
   {
-    kind: "work",
-    src: "/artwork/mikromori.jpg",
+    kind: "series",
+    id: "mikromori",
     title: "Mikromori",
-    category: "Acrylic on canvas",
+    category: "Acrylic on canvas · Hauptwerk",
     year: "2025",
     size: "featured",
+    cover: "/artwork/mikromori.jpg",
+    items: [
+      { src: "/artwork/mikromori.jpg", title: "Mikromori" },
+      // Variants (close-ups, on the easel, on the street) — drop matching
+      // JPGs into /public/artwork/mikromori-variants/ and they appear here.
+      // Filenames below are placeholders for whatever you add later.
+      // { src: "/artwork/mikromori-variants/full.jpg", title: "Full canvas" },
+      // { src: "/artwork/mikromori-variants/detail-1.jpg", title: "Detail" },
+      // { src: "/artwork/mikromori-variants/detail-2.jpg", title: "Detail (2)" },
+      // { src: "/artwork/mikromori-variants/on-easel.jpg", title: "In studio" },
+      // { src: "/artwork/mikromori-variants/street.jpg", title: "On the way" },
+    ],
   },
 
   // ── LOUVRE + COLLAGE — neue Serie, available as print ─────────────────
@@ -144,7 +157,7 @@ export const entries: Entry[] = [
     size: "square",
   },
 
-  // ── PORTRAITS & DRAWINGS — clickable folder ───────────────────────────
+  // ── PORTRAITS & DRAWINGS — click the red portrait to open the folder ──
   {
     kind: "series",
     id: "portraits",
@@ -152,13 +165,13 @@ export const entries: Entry[] = [
     category: "Sketchbook · Folder",
     year: "2024 — 2025",
     size: "wide",
-    cover: "/artwork/works/work-015.jpg",
+    cover: "/artwork/works/work-014.jpg",
     items: [
-      { src: "/artwork/works/work-011.jpg", title: "Figure, falling" },
-      { src: "/artwork/works/work-012.jpg", title: "Head with curls" },
-      { src: "/artwork/works/work-013.jpg", title: "Bearded sculpture" },
       { src: "/artwork/works/work-014.jpg", title: "Profile, red" },
       { src: "/artwork/works/work-015.jpg", title: "Apollo, three-quarter" },
+      { src: "/artwork/works/work-012.jpg", title: "Head with curls" },
+      { src: "/artwork/works/work-013.jpg", title: "Bearded sculpture" },
+      { src: "/artwork/works/work-011.jpg", title: "Figure, falling" },
     ],
   },
 

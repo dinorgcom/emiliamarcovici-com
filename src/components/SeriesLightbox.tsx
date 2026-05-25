@@ -62,8 +62,9 @@ export default function SeriesLightbox({ series, onClose }: Props) {
                   src={item.src}
                   alt={item.title || series.title}
                   fill
-                  sizes="(max-width: 768px) 50vw, 33vw"
-                  className="object-cover"
+                  quality={92}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+                  className="object-contain"
                 />
               </div>
               {item.title && (

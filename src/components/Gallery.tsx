@@ -127,7 +127,12 @@ function EntryTile({
         src={cover}
         alt={title}
         fill
-        sizes="(max-width: 768px) 50vw, (max-width: 1280px) 33vw, 25vw"
+        quality={92}
+        sizes={
+          featured
+            ? "(max-width: 768px) 100vw, 80vw"
+            : "(max-width: 768px) 50vw, (max-width: 1280px) 33vw, 25vw"
+        }
         className="object-cover transition-transform duration-1000 ease-out group-hover:scale-105"
       />
 
