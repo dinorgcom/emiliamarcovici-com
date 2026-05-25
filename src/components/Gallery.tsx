@@ -117,8 +117,8 @@ function EntryTile({
     entry.kind === "series"
       ? `${entry.items.length} pieces · ${entry.year}`
       : `${entry.category} · ${entry.year}`;
-  const featured = entry.kind === "work" && entry.size === "featured";
-  const badge = entry.kind === "work" ? entry.badge : undefined;
+  const featured = entry.size === "featured";
+  const badge = entry.badge;
 
   const cls = `gallery-item group relative overflow-hidden cursor-pointer rounded-sm bg-black/10 ${sizeClasses(
     entry.size

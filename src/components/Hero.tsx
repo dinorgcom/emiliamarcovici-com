@@ -20,9 +20,14 @@ export default function Hero() {
               priority
               quality={92}
               sizes="100vw"
-              // object-position pushed down so the black square (lower-left
-              // of the canvas) stays in frame on wide desktop viewports
-              style={{ objectPosition: "center 75%" }}
+              // The canvas has its black square in the lower-left. The
+              // headline sits left, so we mirror the painting (scaleX(-1))
+              // to move the square to the lower-right where it doesn't
+              // sit under text. object-position 75% 70% keeps it visible.
+              style={{
+                objectPosition: "75% 70%",
+                transform: "scaleX(-1)",
+              }}
               className="object-cover hero-image"
             />
           </div>
