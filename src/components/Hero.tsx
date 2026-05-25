@@ -7,15 +7,15 @@ export default function Hero() {
       id="top"
       className="relative pt-32 pb-20 md:pt-44 md:pb-32 overflow-hidden bg-[#0a0a0a] text-[#f4ede0]"
     >
-      {/* Full-bleed Mikromori painting — saturated + animated */}
+      {/* Full-bleed Hikikomori painting — saturated + animated */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         {/* outer: long zoom-out reveal */}
         <div className="absolute inset-0 animate-hero-zoom">
           {/* inner: continuous breathe + hue shift */}
           <div className="absolute inset-0 animate-hero-breathe">
             <Image
-              src="/artwork/mikromori.jpg"
-              alt=""
+              src="/artwork/hikikomori.jpg"
+              alt="Hikikomori — Emilia Marcovici"
               fill
               priority
               quality={92}

@@ -39,26 +39,25 @@ export type Series = {
 export type Entry = Work | Series;
 
 export const entries: Entry[] = [
-  // ── HAUPTWERK — Mikromori series ──────────────────────────────────────
-  // Click the cover (the one with the black square) to open all variants.
+  // ── HAUPTWERK — Hikikomori series ─────────────────────────────────────
+  // Cover is the canvas with the black square. Click to open all variants.
   {
     kind: "series",
-    id: "mikromori",
-    title: "Mikromori",
+    id: "hikikomori",
+    title: "Hikikomori",
     category: "Acrylic on canvas · Hauptwerk",
     year: "2025",
     size: "featured",
-    cover: "/artwork/mikromori.jpg",
+    cover: "/artwork/hikikomori.jpg",
     items: [
-      { src: "/artwork/mikromori.jpg", title: "Mikromori" },
+      { src: "/artwork/hikikomori.jpg", title: "Hikikomori — canvas" },
       // Variants (close-ups, on the easel, on the street) — drop matching
-      // JPGs into /public/artwork/mikromori-variants/ and they appear here.
-      // Filenames below are placeholders for whatever you add later.
-      // { src: "/artwork/mikromori-variants/full.jpg", title: "Full canvas" },
-      // { src: "/artwork/mikromori-variants/detail-1.jpg", title: "Detail" },
-      // { src: "/artwork/mikromori-variants/detail-2.jpg", title: "Detail (2)" },
-      // { src: "/artwork/mikromori-variants/on-easel.jpg", title: "In studio" },
-      // { src: "/artwork/mikromori-variants/street.jpg", title: "On the way" },
+      // JPGs into /public/artwork/hikikomori-variants/ and add entries here.
+      // { src: "/artwork/hikikomori-variants/full.jpg", title: "Full canvas" },
+      // { src: "/artwork/hikikomori-variants/detail-1.jpg", title: "Detail" },
+      // { src: "/artwork/hikikomori-variants/detail-2.jpg", title: "Detail (2)" },
+      // { src: "/artwork/hikikomori-variants/on-easel.jpg", title: "In studio" },
+      // { src: "/artwork/hikikomori-variants/street.jpg", title: "On the way" },
     ],
   },
 
