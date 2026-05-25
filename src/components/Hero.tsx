@@ -14,7 +14,7 @@ export default function Hero() {
           {/* inner: continuous breathe + hue shift */}
           <div className="absolute inset-0 animate-hero-breathe">
             <Image
-              src="/artwork/hikikomori.jpg"
+              src="/artwork/works/work-052.jpg"
               alt="Hikikomori — Emilia Marcovici"
               fill
               priority
