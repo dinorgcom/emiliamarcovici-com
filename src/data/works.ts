@@ -38,6 +38,7 @@ export type Entry = Work | Series;
 
 export const entries: Entry[] = [
   // ── HAUPTWERK — Hikikomori ────────────────────────────────────────────
+  // Cover = the close-up with the black square (user's chosen Hauptfoto).
   {
     kind: "series",
     id: "hikikomori",
@@ -45,13 +46,13 @@ export const entries: Entry[] = [
     category: "Acrylic on canvas · Hauptwerk",
     year: "2025",
     size: "featured",
-    cover: "/artwork/hikikomori.jpg",
+    cover: "/artwork/works/work-050.jpg",
     items: [
       { src: "/artwork/works/work-052.jpg", title: "Full canvas, on easel" },
-      { src: "/artwork/works/work-050.jpg", title: "Close-up · brush strokes" },
       { src: "/artwork/works/work-051.jpg", title: "Studio · angle" },
       { src: "/artwork/works/work-053.jpg", title: "Detail" },
       { src: "/artwork/works/work-054.jpg", title: "On the street" },
+      { src: "/artwork/hikikomori.jpg", title: "Canvas · full frame" },
     ],
   },
 
@@ -77,9 +78,8 @@ export const entries: Entry[] = [
     ],
   },
 
-  // ── DRAWINGS & STUDIES — figure drawing + portraits, NO statues ──────
-  // The two Louvre statue-with-sketch photos moved to the Louvre folder.
-  // NY · Jazz pulled in here per request (figure-heavy panel).
+  // ── DRAWINGS & STUDIES — pencil + charcoal drawings ──────────────────
+  // Geometric abstract (work-059) added per latest request.
   {
     kind: "series",
     id: "drawings",
@@ -96,13 +96,11 @@ export const entries: Entry[] = [
       { src: "/artwork/works/work-030.jpg", title: "Life-drawing pair" },
       { src: "/artwork/works/work-017.jpg", title: "Bonnet portrait" },
       { src: "/artwork/works/work-020.jpg", title: "Old man, watercolour" },
-      { src: "/artwork/works/work-014.jpg", title: "New York · Jazz" },
+      { src: "/artwork/works/work-059.jpg", title: "Geometric abstract" },
     ],
   },
 
-  // ── TRAVEL POSTCARDS — landscape panels only (no faces, no heads) ────
-  // Brazil/Rio removed: the prominent macaw head + Christ statue head
-  // didn't fit the user's "postcards" idea.
+  // ── TRAVEL POSTCARDS — all country panels back in one folder ─────────
   {
     kind: "series",
     id: "travel",
@@ -112,7 +110,11 @@ export const entries: Entry[] = [
     size: "wide",
     cover: "/artwork/works/work-015.jpg",
     items: [
+      { src: "/artwork/works/work-012.jpg", title: "Brazil · Rio" },
+      { src: "/artwork/works/work-014.jpg", title: "New York · Jazz" },
       { src: "/artwork/works/work-016.jpg", title: "Paris" },
+      { src: "/artwork/works/work-018.jpg", title: "London" },
+      { src: "/artwork/works/work-019.jpg", title: "Russia" },
       { src: "/artwork/works/work-007.jpg", title: "Japan · Fuji panels" },
     ],
   },
@@ -287,31 +289,6 @@ export const entries: Entry[] = [
     size: "square",
   },
 
-  // ── City panels ──────────────────────────────────────────────────────
-  {
-    kind: "work",
-    src: "/artwork/works/work-012.jpg",
-    title: "Brazil · Rio",
-    category: "Watercolour",
-    year: "2024",
-    size: "tall",
-  },
-  {
-    kind: "work",
-    src: "/artwork/works/work-018.jpg",
-    title: "London",
-    category: "Watercolour",
-    year: "2024",
-    size: "tall",
-  },
-  {
-    kind: "work",
-    src: "/artwork/works/work-019.jpg",
-    title: "Russia",
-    category: "Watercolour",
-    year: "2024",
-    size: "tall",
-  },
 ];
 
 export const totalPieces = entries.reduce((n, e) => {

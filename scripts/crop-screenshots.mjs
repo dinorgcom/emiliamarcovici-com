@@ -1,7 +1,10 @@
 /**
- * Some pieces were pasted as Instagram screenshots that carry a
- * "paintby_emilia" username strip across the very top. Crop the strip
- * off so it stops looking like a screenshot.
+ * Some pieces were pasted as screenshots and need cropping so they
+ * don't read as screenshots in the gallery:
+ *  - work-022 (Papaya): Instagram username strip on top
+ *  - work-023 (Campari): same IG strip
+ *  - work-059 (Geometric abstract): full iOS Photos screenshot — crop
+ *    away the status bar and the thumbnail scrubber at the bottom.
  */
 
 import fs from "node:fs/promises";
@@ -10,31 +13,41 @@ import sharp from "sharp";
 
 const WORKS = path.join(process.cwd(), "public", "artwork", "works");
 
-// Top-crop percentage. The username row + tiny avatar takes about
-// 13% of the screenshot height.
 const targets = [
-  { file: "work-022.jpg", top: 0.13 }, // papaya
-  { file: "work-023.jpg", top: 0.13 }, // campari
+  { file: "work-022.jpg", crop: { top: 0.13 } },
+  { file: "work-023.jpg", crop: { top: 0.13 } },
+  // iOS Photos screenshot — keep only the middle artwork band
+  { file: "work-059.png", crop: { top: 0.16, bottom: 0.22 } },
 ];
 
 for (const t of targets) {
   const p = path.join(WORKS, t.file);
-  const buf = await fs.readFile(p);
-  const img = sharp(buf);
-  const meta = await img.metadata();
-  const cropY = Math.round((meta.height || 0) * t.top);
+  let buf;
+  try {
+    buf = await fs.readFile(p);
+  } catch {
+    console.log(`! ${t.file}: not found, skipping`);
+    continue;
+  }
+  const meta = await sharp(buf).metadata();
+  const w = meta.width || 0;
+  const h = meta.height || 0;
+  const top = Math.round(h * (t.crop.top || 0));
+  const bottom = Math.round(h * (t.crop.bottom || 0));
+  const newH = h - top - bottom;
   const out = await sharp(buf)
-    .extract({
-      left: 0,
-      top: cropY,
-      width: meta.width || 0,
-      height: (meta.height || 0) - cropY,
-    })
+    .extract({ left: 0, top, width: w, height: newH })
     .jpeg({ quality: 92, mozjpeg: true })
     .toBuffer();
-  await fs.writeFile(p, out);
-  const meta2 = await sharp(out).metadata();
-  console.log(
-    `✓ ${t.file}: ${meta.width}×${meta.height} → ${meta2.width}×${meta2.height}`
-  );
+  // If the source was .png, save the cropped result as .jpg and remove
+  // the .png so the catalogue can reference a single .jpg path.
+  if (t.file.endsWith(".png")) {
+    const jpgPath = p.replace(/\.png$/, ".jpg");
+    await fs.writeFile(jpgPath, out);
+    await fs.unlink(p);
+    console.log(`✓ ${t.file} → ${path.basename(jpgPath)}: ${w}×${h} → ${w}×${newH}`);
+  } else {
+    await fs.writeFile(p, out);
+    console.log(`✓ ${t.file}: ${w}×${h} → ${w}×${newH}`);
+  }
 }
