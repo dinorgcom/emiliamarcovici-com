@@ -20,7 +20,10 @@ export default function Hero() {
               priority
               quality={92}
               sizes="100vw"
-              className="object-cover object-center hero-image"
+              // object-position pushed down so the black square (lower-left
+              // of the canvas) stays in frame on wide desktop viewports
+              style={{ objectPosition: "center 75%" }}
+              className="object-cover hero-image"
             />
           </div>
         </div>

@@ -7,15 +7,18 @@ import SeriesLightbox from "./SeriesLightbox";
 import { entries, totalPieces, type Entry, type Series } from "@/data/works";
 
 function sizeClasses(size: "tall" | "wide" | "square" | "featured") {
+  // Sizing comes from grid row/col spans only — no aspect-ratio classes.
+  // That way tiles always fill their grid cell exactly and never overflow
+  // into neighbours, regardless of intrinsic image dimensions.
   switch (size) {
     case "featured":
-      return "col-span-2 md:col-span-4 md:row-span-3 aspect-[16/9] md:aspect-auto";
+      return "col-span-2 md:col-span-4 row-span-2 md:row-span-3";
     case "tall":
-      return "row-span-2 aspect-[3/4]";
+      return "row-span-2";
     case "wide":
-      return "col-span-2 aspect-[16/10]";
+      return "col-span-2";
     default:
-      return "aspect-square";
+      return "";
   }
 }
 
