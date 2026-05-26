@@ -18,6 +18,9 @@ const targets = [
   { file: "work-043.jpg", t: 0.24, b: 0.22, l: 0.10, r: 0.22 },       // Study with pastels
   { file: "work-055.jpg", t: 0.10, b: 0.06, l: 0.20, r: 0.20 },       // Sunset block
   { file: "work-059.png", t: 0.16, b: 0.22 },                         // Geometric (iOS chrome)
+  // Dragon fruit (Sketches folder cover) — sketchbook spiral on the
+  // left and wooden desk on the right showing through. Crop the sides.
+  { file: "work-025.jpg", l: 0.14, r: 0.10 },
 ];
 
 for (const t of targets) {
