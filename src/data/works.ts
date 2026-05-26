@@ -102,12 +102,12 @@ export const entries: Entry[] = [
     ],
   },
 
-  // ── TRAVEL POSTCARDS — all country panels ────────────────────────────
+  // ── FREE BIRD — Hauptwerk 2024 (was "Travel postcards") ─────────────
   {
     kind: "series",
-    id: "travel",
-    title: "Travel postcards",
-    category: "Watercolour",
+    id: "free-bird",
+    title: "Free bird",
+    category: "Watercolour · Hauptwerk",
     year: "2024",
     size: "wide",
     cover: "/artwork/works/work-015.jpg",
