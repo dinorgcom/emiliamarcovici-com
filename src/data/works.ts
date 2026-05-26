@@ -221,24 +221,7 @@ export const entries: Entry[] = [
     year: "2024",
     size: "square",
   },
-  // Wood planks rendered as full-width banners between the masonry and
-  // the rest of the standalones — see Gallery.tsx for layout.
-  {
-    kind: "work",
-    src: "/artwork/works/work-062.jpg",
-    title: "Wave on cherry",
-    category: "Acrylic on wood",
-    year: "2025",
-    size: "banner",
-  },
-  {
-    kind: "work",
-    src: "/artwork/works/work-063.jpg",
-    title: "Eye on ebony",
-    category: "Acrylic on wood",
-    year: "2025",
-    size: "banner",
-  },
+  // (Wave on cherry + Eye on ebony removed per request.)
   // Pulled out of the Still Life folder so they read as fruit
   // standalone tiles, not buried behind a sculpture-ish cover.
   {
