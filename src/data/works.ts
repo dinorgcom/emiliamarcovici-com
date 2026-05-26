@@ -237,11 +237,19 @@ export const entries: Entry[] = [
   },
   {
     kind: "work",
-    src: "/artwork/works/work-055.jpg",
-    title: "Sunset block",
-    category: "Acrylic + 3D paint",
+    src: "/artwork/works/work-062.jpg",
+    title: "Wave on cherry",
+    category: "Acrylic on wood",
     year: "2025",
-    size: "tall",
+    size: "wide",
+  },
+  {
+    kind: "work",
+    src: "/artwork/works/work-063.jpg",
+    title: "Eye on ebony",
+    category: "Acrylic on wood",
+    year: "2025",
+    size: "wide",
   },
   {
     kind: "work",
