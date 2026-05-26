@@ -1,8 +1,7 @@
 /**
- * Iteratively aggressive crops. Run after upscale. The values cut a
- * percentage off each side of the CURRENT image (already cropped if
- * previous runs already trimmed it). To redo from scratch, restore the
- * file from /artwork/works/.thumbs/ first.
+ * Run after upscale-works.mjs to crop away frames, IG strips, paper
+ * margins and other context that doesn't belong to the artwork.
+ * Each target gives percentage cuts from each side of the current image.
  */
 
 import fs from "node:fs/promises";
@@ -12,10 +11,13 @@ import sharp from "sharp";
 const WORKS = path.join(process.cwd(), "public", "artwork", "works");
 
 const targets = [
-  // Lemon picking — frame and table still visible. Aggressive.
-  { file: "work-037.jpg", t: 0.12, b: 0.12, l: 0.10, r: 0.10 },
-  // Study with pastels — cardboard, table edges, plastic. Aggressive.
-  { file: "work-043.jpg", t: 0.18, b: 0.10, l: 0.06, r: 0.10 },
+  { file: "work-022.jpg", t: 0.13 },                                  // Papaya: IG strip
+  { file: "work-023.jpg", t: 0.13 },                                  // Campari: IG strip
+  { file: "work-033.jpg", t: 0.20, b: 0.20, l: 0.02, r: 0.10 },       // Bearded sculpture
+  { file: "work-037.jpg", t: 0.18, b: 0.18, l: 0.15, r: 0.32 },       // Lemon picking — frame + price card
+  { file: "work-043.jpg", t: 0.24, b: 0.22, l: 0.10, r: 0.22 },       // Study with pastels
+  { file: "work-055.jpg", t: 0.10, b: 0.06, l: 0.20, r: 0.20 },       // Sunset block
+  { file: "work-059.png", t: 0.16, b: 0.22 },                         // Geometric (iOS chrome)
 ];
 
 for (const t of targets) {
@@ -42,6 +44,8 @@ for (const t of targets) {
     })
     .jpeg({ quality: 92, mozjpeg: true })
     .toBuffer();
-  await fs.writeFile(p, out);
+  const outPath = t.file.endsWith(".png") ? p.replace(/\.png$/, ".jpg") : p;
+  await fs.writeFile(outPath, out);
+  if (t.file.endsWith(".png")) await fs.unlink(p).catch(() => {});
   console.log(`✓ ${t.file}: ${w}×${h} → ${w - left - right}×${h - top - bottom}`);
 }

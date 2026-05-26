@@ -166,7 +166,10 @@ export const entries: Entry[] = [
     year: "2024 — 2025",
     size: "square",
     cover: "/artwork/works/work-001.jpg",
-    items: [{ src: "/artwork/works/work-002.jpg", title: "Cat, from behind" }],
+    items: [
+      { src: "/artwork/works/work-002.jpg", title: "Cat, from behind" },
+      { src: "/artwork/works/work-060.jpg", title: "Kitten with yarn" },
+    ],
   },
 
   // ── WALNUTS — pure walnut studies, no statues ────────────────────────
@@ -279,6 +282,14 @@ export const entries: Entry[] = [
     category: "Coloured pencil",
     year: "2024",
     size: "square",
+  },
+  {
+    kind: "work",
+    src: "/artwork/works/work-061.jpg",
+    title: "Film negatives",
+    category: "Photography · Contact sheet",
+    year: "2024",
+    size: "wide",
   },
 ];
 
