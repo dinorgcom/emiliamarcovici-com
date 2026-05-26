@@ -35,11 +35,11 @@ export default function Gallery() {
       id="gallery"
       className="relative py-24 md:py-32 overflow-hidden"
       style={{
-        // Ice-blue base with a tiny vertical gradient so the section
+        // Poppy orange base with a tiny vertical gradient so the section
         // doesn't feel like one flat colour.
-        backgroundColor: "#c8dde6",
+        backgroundColor: "#ff8838",
         backgroundImage:
-          "linear-gradient(180deg, #d6e6ec 0%, #c0d8e2 50%, #b8d2dd 100%)",
+          "linear-gradient(180deg, #ff9a40 0%, #ff7a25 50%, #ff6b1a 100%)",
       }}
     >
       {/* Subtle SVG-noise grain — gives the section a paper-like
@@ -120,7 +120,7 @@ export default function Gallery() {
                 as="article"
                 className="gallery-item group relative overflow-hidden rounded-sm block"
               >
-                <div className="relative w-full aspect-[16/5] bg-[#b0cad6]">
+                <div className="relative w-full aspect-[16/5] bg-[#ffb877]">
                   <Image
                     src={entry.kind === "series" ? entry.cover : entry.src}
                     alt={entry.title}
@@ -198,15 +198,15 @@ function FeaturedInner({ entry, accent }: { entry: Entry; accent: string }) {
           className="absolute top-0 right-0 w-12 h-12 md:w-16 md:h-16"
           style={{ background: accent }}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/30 to-transparent" />
-        <div className="absolute bottom-0 left-0 right-0 p-6 md:p-10 text-white">
+        {/* No dark gradient — text relies on drop-shadow for legibility. */}
+        <div className="absolute bottom-0 left-0 right-0 p-6 md:p-10 text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.85)]">
           <p className="text-[10px] md:text-xs uppercase tracking-[0.3em] text-[#ffd60a] mb-2">
             Hauptwerk · {entry.year}
           </p>
           <h3 className="font-serif text-4xl md:text-7xl italic leading-none">
             {entry.title}
           </h3>
-          <p className="text-xs md:text-sm text-white/85 mt-2">
+          <p className="text-xs md:text-sm text-white/95 mt-2">
             {entry.category}
           </p>
         </div>
@@ -245,7 +245,7 @@ function MasonryTile({
         quality={92}
         sizes="(max-width: 768px) 50vw, (max-width: 1280px) 33vw, 25vw"
         className="w-full h-auto block transition-transform duration-700 ease-out group-hover:scale-[1.02]"
-        style={{ background: "#b0cad6" }}
+        style={{ background: "#ffb877" }}
       />
 
       {/* Series stack effect — gives a "stack of cards" hint */}
