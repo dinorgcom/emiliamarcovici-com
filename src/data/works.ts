@@ -146,8 +146,9 @@ export const entries: Entry[] = [
     category: "Oil pastel · Watercolour",
     year: "2024 — 2025",
     size: "tall",
-    cover: "/artwork/works/work-040.jpg",
+    cover: "/artwork/works/work-025.jpg",
     items: [
+      { src: "/artwork/works/work-040.jpg", title: "Apple, grapes, pear" },
       { src: "/artwork/works/work-042.jpg", title: "Pears + orange" },
       { src: "/artwork/works/work-004.jpg", title: "Half a lemon" },
       { src: "/artwork/works/work-022.jpg", title: "Papaya" },
@@ -222,16 +223,8 @@ export const entries: Entry[] = [
     size: "square",
   },
   // (Wave on cherry + Eye on ebony removed per request.)
-  // Pulled out of the Still Life folder so they read as fruit
-  // standalone tiles, not buried behind a sculpture-ish cover.
-  {
-    kind: "work",
-    src: "/artwork/works/work-025.jpg",
-    title: "Dragon fruit",
-    category: "Watercolour · Fruit",
-    year: "2025",
-    size: "tall",
-  },
+  // Blueberries stays as a standalone fruit tile per earlier request.
+  // (Dragon fruit is now the Still Life folder cover, no duplicate here.)
   {
     kind: "work",
     src: "/artwork/works/work-003.jpg",
