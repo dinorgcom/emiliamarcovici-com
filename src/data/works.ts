@@ -224,29 +224,19 @@ export const entries: Entry[] = [
     year: "2025",
     size: "square",
   },
+  // ── PHOTOGRAPHY — lion-head door is the cover ────────────────────────
   {
-    kind: "work",
-    src: "/artwork/works/work-036.jpg",
-    title: "Doll by the harbour",
+    kind: "series",
+    id: "photography",
+    title: "Photography",
     category: "Photography",
     year: "2024",
-    size: "tall",
-  },
-  {
-    kind: "work",
-    src: "/artwork/works/work-028.jpg",
-    title: "Lion door",
-    category: "Photography · Vienna",
-    year: "2024",
     size: "square",
-  },
-  {
-    kind: "work",
-    src: "/artwork/works/work-061.jpg",
-    title: "Film negatives",
-    category: "Photography · Contact sheet",
-    year: "2024",
-    size: "wide",
+    cover: "/artwork/works/work-028.jpg",
+    items: [
+      { src: "/artwork/works/work-036.jpg", title: "Doll by the harbour" },
+      { src: "/artwork/works/work-061.jpg", title: "Film negatives" },
+    ],
   },
 ];
 
