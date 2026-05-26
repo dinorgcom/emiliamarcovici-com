@@ -50,7 +50,7 @@ export default function Gallery() {
             <div className="inline-flex items-center gap-3 mb-4">
               <span className="w-2.5 h-2.5 rounded-full bg-[#0058ff]" />
               <p className="text-xs uppercase tracking-[0.3em] text-black/60">
-                (02) Selected Works · {totalPieces} pieces
+                (02) Selected Works · 50+ pieces
               </p>
             </div>
             <h2 className="font-serif text-5xl md:text-7xl tracking-tight">
