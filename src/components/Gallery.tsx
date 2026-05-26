@@ -23,7 +23,12 @@ export default function Gallery() {
   const featured = entries.find(
     (e) => e.size === "featured"
   ) as Entry | undefined;
-  const rest = entries.filter((e) => e !== featured);
+  // Banner-size entries also break out of the masonry — rendered as
+  // full-width side-by-side strips below the masonry grid.
+  const banners = entries.filter((e) => e.size === "banner");
+  const rest = entries.filter(
+    (e) => e !== featured && e.size !== "banner"
+  );
 
   return (
     <section
@@ -85,6 +90,45 @@ export default function Gallery() {
             />
           ))}
         </div>
+
+        {/* Banner-size tiles — full-bleed wood planks etc. */}
+        {banners.length > 0 && (
+          <div className="mt-6 md:mt-8 space-y-4 md:space-y-5">
+            {banners.map((entry, idx) => (
+              <Reveal
+                key={entry.kind === "series" ? entry.id : entry.src}
+                as="article"
+                className="gallery-item group relative overflow-hidden rounded-sm block"
+              >
+                <div className="relative w-full aspect-[16/5] bg-[#e8e2d4]">
+                  <Image
+                    src={entry.kind === "series" ? entry.cover : entry.src}
+                    alt={entry.title}
+                    fill
+                    quality={92}
+                    sizes="100vw"
+                    className="object-cover object-center transition-transform duration-1000 ease-out group-hover:scale-[1.02]"
+                  />
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/35 transition-colors duration-500" />
+                  <div
+                    className="absolute top-0 right-0 w-10 h-10 md:w-14 md:h-14"
+                    style={{ background: accents[(idx + 4) % accents.length] }}
+                  />
+                  <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6 text-white translate-y-2 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500">
+                    <p className="text-[10px] uppercase tracking-[0.25em] opacity-85 mb-1">
+                      {entry.kind === "work"
+                        ? `${entry.category} · ${entry.year}`
+                        : `${entry.category} · ${entry.year}`}
+                    </p>
+                    <h3 className="font-serif text-xl md:text-3xl italic">
+                      {entry.title}
+                    </h3>
+                  </div>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        )}
 
         <Reveal className="mt-16 text-center">
           <a

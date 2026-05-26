@@ -18,7 +18,7 @@ export type Item = {
 
 export type Work = Item & {
   kind: "work";
-  size: "tall" | "wide" | "square" | "featured";
+  size: "tall" | "wide" | "square" | "featured" | "banner";
   title: string;
   category: string;
   year: string;
@@ -31,7 +31,7 @@ export type Series = {
   title: string;
   category: string;
   year: string;
-  size: "tall" | "wide" | "square" | "featured";
+  size: "tall" | "wide" | "square" | "featured" | "banner";
   cover: string;
   badge?: string;
   items: Item[];
@@ -70,9 +70,10 @@ export const entries: Entry[] = [
     category: "Photography + Collage",
     year: "2025",
     size: "wide",
-    cover: "/artwork/works/work-056.jpg",
+    cover: "/artwork/works/work-064.jpg",
     badge: "Available as print",
     items: [
+      { src: "/artwork/works/work-056.jpg", title: "Venus, full statue" },
       { src: "/artwork/works/work-057.jpg", title: "Bather, turquoise" },
       { src: "/artwork/works/work-058.jpg", title: "Cupid, gold" },
       { src: "/artwork/works/work-026.jpg", title: "Louvre study · curly head" },
@@ -148,10 +149,8 @@ export const entries: Entry[] = [
     cover: "/artwork/works/work-040.jpg",
     items: [
       { src: "/artwork/works/work-042.jpg", title: "Pears + orange" },
-      { src: "/artwork/works/work-003.jpg", title: "Blueberries" },
       { src: "/artwork/works/work-004.jpg", title: "Half a lemon" },
       { src: "/artwork/works/work-022.jpg", title: "Papaya" },
-      { src: "/artwork/works/work-025.jpg", title: "Dragon fruit" },
       { src: "/artwork/works/work-049.jpg", title: "Citrus studies" },
       { src: "/artwork/works/work-023.jpg", title: "Campari" },
     ],
@@ -235,13 +234,15 @@ export const entries: Entry[] = [
     year: "2024",
     size: "square",
   },
+  // Wood planks rendered as full-width banners between the masonry and
+  // the rest of the standalones — see Gallery.tsx for layout.
   {
     kind: "work",
     src: "/artwork/works/work-062.jpg",
     title: "Wave on cherry",
     category: "Acrylic on wood",
     year: "2025",
-    size: "wide",
+    size: "banner",
   },
   {
     kind: "work",
@@ -249,7 +250,25 @@ export const entries: Entry[] = [
     title: "Eye on ebony",
     category: "Acrylic on wood",
     year: "2025",
-    size: "wide",
+    size: "banner",
+  },
+  // Pulled out of the Still Life folder so they read as fruit
+  // standalone tiles, not buried behind a sculpture-ish cover.
+  {
+    kind: "work",
+    src: "/artwork/works/work-025.jpg",
+    title: "Dragon fruit",
+    category: "Watercolour · Fruit",
+    year: "2025",
+    size: "tall",
+  },
+  {
+    kind: "work",
+    src: "/artwork/works/work-003.jpg",
+    title: "Blueberries",
+    category: "Oil · Fruit",
+    year: "2025",
+    size: "square",
   },
   {
     kind: "work",

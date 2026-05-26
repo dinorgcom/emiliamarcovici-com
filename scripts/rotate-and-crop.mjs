@@ -12,14 +12,15 @@ const WORKS = path.join(process.cwd(), "public", "artwork", "works");
 
 // Each entry: rotate (CW degrees), then crop percentages from each side.
 const ops = [
-  // Wood plank with water/wave detail. Rotate 90° CW → horizontal.
-  // Aggressive top/bottom crop to drop the white background.
+  // Wood plank with water/wave detail. Rotate 270° (CCW) so the detail
+  // sits on the LEFT — consistent with the ebony plank below.
   {
     file: "work-062.jpg",
-    rotate: 90,
+    rotate: 270,
     crop: { t: 0.20, b: 0.20, l: 0.04, r: 0.04 },
   },
-  // Dark wood plank with painted detail at the left after rotation.
+  // Dark wood plank with painted eye detail. Rotate 90° CW so the eye
+  // also sits on the LEFT.
   {
     file: "work-063.jpg",
     rotate: 90,
