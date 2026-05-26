@@ -143,22 +143,24 @@ export const entries: Entry[] = [
     kind: "series",
     id: "sketches",
     title: "Sketches",
-    category: "Oil pastel · Watercolour",
+    category: "Oil pastel · Watercolour · Pattern",
     year: "2024 — 2025",
     size: "tall",
-    cover: "/artwork/works/work-025.jpg",
+    cover: "/artwork/works/work-039.jpg",
     items: [
+      // Dragon fruit moves inside the folder now that Marbled pattern is the cover.
+      { src: "/artwork/works/work-025.jpg", title: "Dragon fruit" },
       { src: "/artwork/works/work-040.jpg", title: "Apple, grapes, pear" },
       { src: "/artwork/works/work-042.jpg", title: "Pears + orange" },
       { src: "/artwork/works/work-004.jpg", title: "Half a lemon" },
       { src: "/artwork/works/work-022.jpg", title: "Papaya" },
       { src: "/artwork/works/work-049.jpg", title: "Citrus studies" },
       { src: "/artwork/works/work-023.jpg", title: "Campari" },
-      // Added per request — were N09, N11, N12, N17 standalones.
       { src: "/artwork/works/work-044.jpg", title: "Fuji, pink" },
       { src: "/artwork/works/work-043.jpg", title: "Study with pastels" },
       { src: "/artwork/works/work-024.jpg", title: "Tree of roots" },
       { src: "/artwork/works/work-029.jpg", title: "Sea turtle" },
+      { src: "/artwork/works/work-003.jpg", title: "Blueberries" },
     ],
   },
 
@@ -193,25 +195,7 @@ export const entries: Entry[] = [
     year: "2024",
     size: "square",
   },
-  // (Wave on cherry + Eye on ebony removed per request.)
-  // Blueberries stays as a standalone fruit tile per earlier request.
-  // (Dragon fruit is now the Still Life folder cover, no duplicate here.)
-  {
-    kind: "work",
-    src: "/artwork/works/work-003.jpg",
-    title: "Blueberries",
-    category: "Oil · Fruit",
-    year: "2025",
-    size: "square",
-  },
-  {
-    kind: "work",
-    src: "/artwork/works/work-039.jpg",
-    title: "Marbled pattern",
-    category: "Marbling",
-    year: "2025",
-    size: "square",
-  },
+  // Blueberries + Marbled pattern moved into the Sketches folder.
   // ── PHOTOGRAPHY — lion-head door is the cover ────────────────────────
   {
     kind: "series",
