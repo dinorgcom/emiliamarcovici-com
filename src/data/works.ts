@@ -154,6 +154,11 @@ export const entries: Entry[] = [
       { src: "/artwork/works/work-022.jpg", title: "Papaya" },
       { src: "/artwork/works/work-049.jpg", title: "Citrus studies" },
       { src: "/artwork/works/work-023.jpg", title: "Campari" },
+      // Added per request — were N09, N11, N12, N17 standalones.
+      { src: "/artwork/works/work-044.jpg", title: "Fuji, pink" },
+      { src: "/artwork/works/work-043.jpg", title: "Study with pastels" },
+      { src: "/artwork/works/work-024.jpg", title: "Tree of roots" },
+      { src: "/artwork/works/work-029.jpg", title: "Sea turtle" },
     ],
   },
 
@@ -190,35 +195,13 @@ export const entries: Entry[] = [
   },
 
   // ── STANDALONE WORKS ──────────────────────────────────────────────────
-  {
-    kind: "work",
-    src: "/artwork/works/work-044.jpg",
-    title: "Fuji, pink",
-    category: "Acrylic · Japan",
-    year: "2025",
-    size: "wide",
-  },
+  // Fuji-pink, Study-with-pastels and Tree-of-roots moved into the
+  // Sketches folder per request — only Volcano remains here.
   {
     kind: "work",
     src: "/artwork/works/work-008.jpg",
     title: "Volcano",
     category: "Acrylic",
-    year: "2024",
-    size: "square",
-  },
-  {
-    kind: "work",
-    src: "/artwork/works/work-043.jpg",
-    title: "Study with pastels",
-    category: "Oil pastel · Abstract",
-    year: "2025",
-    size: "tall",
-  },
-  {
-    kind: "work",
-    src: "/artwork/works/work-024.jpg",
-    title: "Tree of roots",
-    category: "Mixed media",
     year: "2024",
     size: "square",
   },
@@ -254,14 +237,6 @@ export const entries: Entry[] = [
     src: "/artwork/works/work-028.jpg",
     title: "Lion door",
     category: "Photography · Vienna",
-    year: "2024",
-    size: "square",
-  },
-  {
-    kind: "work",
-    src: "/artwork/works/work-029.jpg",
-    title: "Sea turtle",
-    category: "Coloured pencil",
     year: "2024",
     size: "square",
   },
