@@ -138,11 +138,11 @@ export const entries: Entry[] = [
     ],
   },
 
-  // ── STILL LIFE ────────────────────────────────────────────────────────
+  // ── SKETCHES ──────────────────────────────────────────────────────────
   {
     kind: "series",
-    id: "still-life",
-    title: "Still Life",
+    id: "sketches",
+    title: "Sketches",
     category: "Oil pastel · Watercolour",
     year: "2024 — 2025",
     size: "tall",
