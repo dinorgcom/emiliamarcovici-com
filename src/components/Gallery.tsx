@@ -33,11 +33,29 @@ export default function Gallery() {
   return (
     <section
       id="gallery"
-      className="relative py-24 md:py-32 bg-[#1a0826] text-[#f4ede0] overflow-hidden"
+      className="relative py-24 md:py-32 overflow-hidden"
+      style={{
+        // Ice-blue base with a tiny vertical gradient so the section
+        // doesn't feel like one flat colour.
+        backgroundColor: "#c8dde6",
+        backgroundImage:
+          "linear-gradient(180deg, #d6e6ec 0%, #c0d8e2 50%, #b8d2dd 100%)",
+      }}
     >
-      {/* Poppy glow blobs — turned up to pop on the dark plum background */}
-      <div className="absolute top-1/3 right-0 w-96 h-96 rounded-full bg-[#ff3ea5] opacity-30 blur-3xl pointer-events-none animate-drift" />
-      <div className="absolute bottom-20 left-10 w-80 h-80 rounded-full bg-[#0058ff] opacity-30 blur-3xl pointer-events-none animate-drift-rev" />
+      {/* Subtle SVG-noise grain — gives the section a paper-like
+          texture without changing the colour. */}
+      <div
+        className="absolute inset-0 pointer-events-none opacity-[0.22] mix-blend-multiply"
+        style={{
+          backgroundImage:
+            "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><filter id='n'><feTurbulence baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.18  0 0 0 0 0.25  0 0 0 0 0.32  0 0 0 0.7 0'/></filter><rect width='200' height='200' filter='url(%23n)'/></svg>\")",
+          backgroundSize: "240px 240px",
+        }}
+      />
+
+      {/* Cool pop glow blobs — soft accents in the icy palette */}
+      <div className="absolute top-1/3 right-0 w-96 h-96 rounded-full bg-[#0058ff] opacity-15 blur-3xl pointer-events-none animate-drift" />
+      <div className="absolute bottom-20 left-10 w-80 h-80 rounded-full bg-[#ff3ea5] opacity-12 blur-3xl pointer-events-none animate-drift-rev" />
       <div className="absolute top-1/2 left-1/3 w-72 h-72 rounded-full bg-[#ffd60a] opacity-15 blur-3xl pointer-events-none animate-drift" />
 
       <div className="max-w-[1400px] mx-auto px-6 md:px-10 relative">
@@ -45,7 +63,7 @@ export default function Gallery() {
           <Reveal>
             <div className="inline-flex items-center gap-3 mb-4">
               <span className="w-2.5 h-2.5 rounded-full bg-[#0058ff]" />
-              <p className="text-xs uppercase tracking-[0.3em] text-white/60">
+              <p className="text-xs uppercase tracking-[0.3em] text-black/60">
                 (02) Selected Works · {totalPieces} pieces
               </p>
             </div>
@@ -55,7 +73,7 @@ export default function Gallery() {
             </h2>
           </Reveal>
           <Reveal delay={1} className="max-w-sm">
-            <p className="text-white/85 leading-relaxed">
+            <p className="text-black/80 leading-relaxed">
               A rotating selection of paintings, mixed-media works and
               studies. Click any series to see all pieces inside.
             </p>
@@ -102,7 +120,7 @@ export default function Gallery() {
                 as="article"
                 className="gallery-item group relative overflow-hidden rounded-sm block"
               >
-                <div className="relative w-full aspect-[16/5] bg-[#2a1438]">
+                <div className="relative w-full aspect-[16/5] bg-[#b0cad6]">
                   <Image
                     src={entry.kind === "series" ? entry.cover : entry.src}
                     alt={entry.title}
@@ -137,7 +155,7 @@ export default function Gallery() {
             href="https://www.instagram.com/paintby_emilia/"
             target="_blank"
             rel="noopener noreferrer"
-            className="group inline-flex items-center gap-3 px-8 py-4 bg-[#ffd60a] text-[#0a0a0a] rounded-full hover:bg-[#ff2e4c] hover:text-white transition-colors"
+            className="group inline-flex items-center gap-3 px-8 py-4 bg-[#0a0a0a] text-[#f4ede0] rounded-full hover:bg-[#ff2e4c] transition-colors"
           >
             <span>See the full archive on Instagram</span>
             <span className="inline-block group-hover:translate-x-1 transition-transform">
@@ -227,7 +245,7 @@ function MasonryTile({
         quality={92}
         sizes="(max-width: 768px) 50vw, (max-width: 1280px) 33vw, 25vw"
         className="w-full h-auto block transition-transform duration-700 ease-out group-hover:scale-[1.02]"
-        style={{ background: "#2a1438" }}
+        style={{ background: "#b0cad6" }}
       />
 
       {/* Series stack effect — gives a "stack of cards" hint */}
