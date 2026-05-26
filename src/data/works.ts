@@ -180,19 +180,7 @@ export const entries: Entry[] = [
     ],
   },
 
-  // ── RECLINING FIGURE + RED YARN — new folder per request ─────────────
-  {
-    kind: "series",
-    id: "figure-yarn",
-    title: "Figure + Yarn",
-    category: "Clay · Object",
-    year: "2025",
-    size: "square",
-    cover: "/artwork/works/work-038.jpg",
-    items: [
-      { src: "/artwork/works/work-041.jpg", title: "Red yarn" },
-    ],
-  },
+  // (Figure + Yarn folder removed per request — work-038 + work-041 dropped.)
 
   // ── STANDALONE WORKS ──────────────────────────────────────────────────
   // Fuji-pink, Study-with-pastels and Tree-of-roots moved into the
