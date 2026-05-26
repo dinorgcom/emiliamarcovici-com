@@ -94,7 +94,7 @@ export const entries: Entry[] = [
       { src: "/artwork/works/work-032.jpg", title: "Head with curls" },
       { src: "/artwork/works/work-035.jpg", title: "Apollo, three-quarter" },
       { src: "/artwork/works/work-034.jpg", title: "Profile, red" },
-      { src: "/artwork/works/work-031.jpg", title: "Figure, falling" },
+      { src: "/artwork/works/work-031.jpg", title: "woman sketch" },
       { src: "/artwork/works/work-030.jpg", title: "Life-drawing pair" },
       { src: "/artwork/works/work-017.jpg", title: "Bonnet portrait" },
       { src: "/artwork/works/work-020.jpg", title: "Old man, watercolour" },

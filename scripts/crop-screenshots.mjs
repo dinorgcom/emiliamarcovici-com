@@ -1,7 +1,6 @@
 /**
- * Run after upscale-works.mjs to crop away frames, IG strips, paper
- * margins and other context that doesn't belong to the artwork.
- * Each target gives percentage cuts from each side of the current image.
+ * Crop only the pieces that genuinely need it. Other folder items keep
+ * their natural (upscaled) photo so the paper margins are visible.
  */
 
 import fs from "node:fs/promises";
@@ -11,16 +10,12 @@ import sharp from "sharp";
 const WORKS = path.join(process.cwd(), "public", "artwork", "works");
 
 const targets = [
-  { file: "work-022.jpg", t: 0.13 },                                  // Papaya: IG strip
-  { file: "work-023.jpg", t: 0.13 },                                  // Campari: IG strip
-  { file: "work-033.jpg", t: 0.20, b: 0.20, l: 0.02, r: 0.10 },       // Bearded sculpture
-  { file: "work-037.jpg", t: 0.18, b: 0.18, l: 0.15, r: 0.32 },       // Lemon picking — frame + price card
-  { file: "work-043.jpg", t: 0.24, b: 0.22, l: 0.10, r: 0.22 },       // Study with pastels
-  { file: "work-055.jpg", t: 0.10, b: 0.06, l: 0.20, r: 0.20 },       // Sunset block
-  { file: "work-059.png", t: 0.16, b: 0.22 },                         // Geometric (iOS chrome)
-  // Dragon fruit (Sketches folder cover) — sketchbook spiral on the
-  // left and wooden desk on the right showing through. Aggressive
-  // side crop to drop both completely.
+  // Drawings folder cover — pencil drawing on paper, edges to be tight.
+  { file: "work-033.jpg", t: 0.20, b: 0.20, l: 0.02, r: 0.10 },
+  // Geometric abstract — iOS Photos chrome above + scrubber below.
+  { file: "work-059.png", t: 0.16, b: 0.22 },
+  // Sketches folder cover (Dragon fruit) — sketchbook spiral on the
+  // left and wooden desk on the right both showing through.
   { file: "work-025.jpg", l: 0.22, r: 0.18 },
 ];
 
