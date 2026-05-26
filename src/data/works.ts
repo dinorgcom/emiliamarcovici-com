@@ -156,20 +156,7 @@ export const entries: Entry[] = [
     ],
   },
 
-  // ── CATS ──────────────────────────────────────────────────────────────
-  {
-    kind: "series",
-    id: "cats",
-    title: "Cats",
-    category: "Acrylic · Pastel",
-    year: "2024 — 2025",
-    size: "square",
-    cover: "/artwork/works/work-001.jpg",
-    items: [
-      { src: "/artwork/works/work-002.jpg", title: "Cat, from behind" },
-      { src: "/artwork/works/work-060.jpg", title: "Kitten with yarn" },
-    ],
-  },
+  // (Cats folder removed per request — work-001, 002, 060 dropped.)
 
   // ── WALNUTS — pure walnut studies, no statues ────────────────────────
   {
@@ -293,14 +280,6 @@ export const entries: Entry[] = [
     category: "Photography · Vienna",
     year: "2024",
     size: "square",
-  },
-  {
-    kind: "work",
-    src: "/artwork/works/work-037.jpg",
-    title: "Lemon picking",
-    category: "Coloured pencil",
-    year: "2024",
-    size: "tall",
   },
   {
     kind: "work",
